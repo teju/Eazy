@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="eazi.com.eazi.MainActivity">
+        <!-- Wall paper -->
+        <ImageView
+            android:id="@+id/pager_introduction"
+            android:layout_width="250dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="200dp"
+            android:layout_marginTop="40dp"
+            android:fitsSystemWindows="true"
+            android:src="@drawable/introduction_image_3"
+            android:scaleType="fitXY"
+            tools:listitem="@layout/pager_item">
+        </ImageView>
+        <!-- wallpaper dots -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_below="@+id/pager_introduction"
+            android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/title"
+                    android:textColor="@color/blue"
+                    android:layout_marginTop="30dp"
+                    android:textSize="28dp"
+                    android:layout_gravity="center_horizontal"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="20dp"
+                    android:id="@+id/desc"
+                    android:layout_gravity="center_horizontal"/>
+                <LinearLayout
+                    android:id="@+id/viewPagerCountDots"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:clickable="true"/>
+                <Button
+                    android:layout_width="200dp"
+                    android:textColor="@color/white"
+                    android:text="@string/agree"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/agree"
+                    android:layout_marginTop="50dp"
+                    android:background="@drawable/rounded_button"
+                    android:layout_gravity="center_horizontal"/>
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:text="By using App name, you agree to our Terms of use and Privacy and Policy"
+                    android:layout_marginTop="30dp"
+                    android:textAlignment="center"
+                    android:lineSpacingExtra="5dp"
+                    android:textSize="15dp"
+                    android:layout_gravity="center_horizontal"/>
+
+        </LinearLayout>
+</RelativeLayout>
