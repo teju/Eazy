@@ -17,6 +17,7 @@ public class Constants {
     public static String user_credentials = "UserXmppCredentials";
     public static String user_name = "user_name";
     public static String user_pass = "user_pass";
+    public static String user_verified = "false";
 
     public static String userNotificationIntent = "userNotificationIntent";
     public static String userNameIntent = "user_name";

@@ -51,9 +51,9 @@ public class post_async extends AsyncTask<String, Integer, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        CommonMethods.dialog(context).show();
-
+        CommonMethods.dialog(context,true);
     }
+
     public void invoke(String url, final String postString) {
 
         PrintClass.printValue("SYSTEMPRINT POST SYNC invoke ", url + " postString " + postString);
@@ -73,13 +73,13 @@ public class post_async extends AsyncTask<String, Integer, String> {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            CommonMethods.dialog(context).cancel();
+                            CommonMethods.dialog(context,false);
                             System.gc();
                             Runtime.getRuntime().gc();
                             PrintClass.printValue("SYSTEMPRINT onResponse ", response.toString());
                             sendResult(response);
                         } catch (Exception e) {
-                            CommonMethods.dialog(context).cancel();
+                            CommonMethods.dialog(context,false);
 
                             e.printStackTrace();
                             PrintClass.printValue("SYSTEMPRINT postsync " +
@@ -90,7 +90,7 @@ public class post_async extends AsyncTask<String, Integer, String> {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        CommonMethods.dialog(context).cancel();
+                        CommonMethods.dialog(context,false);
 
                         System.out.println("SYSTEMPRINT error "  +
                                 " error " + error.toString());
@@ -130,7 +130,7 @@ public class post_async extends AsyncTask<String, Integer, String> {
         PrintClass.printValue("SYSTEMPRINT postsync  if  ", "action " + action +
                 " resultString " + resultString);
         try {
-            CommonMethods.dialog(context).cancel();
+            CommonMethods.dialog(context,false);
             if (this.registerPhoneNumber != null && action.equalsIgnoreCase("confirmuser")) {
                 this.registerPhoneNumber.ResponseOFConfirm(resultString);
             } else if (this.registerPhoneNumber != null && action.equalsIgnoreCase("register")) {
@@ -140,7 +140,9 @@ public class post_async extends AsyncTask<String, Integer, String> {
             }
 
         } catch (Exception e) {
-            CommonMethods.dialog(context).cancel();
+
+                CommonMethods.dialog(context,false);
+
         }
     }
 

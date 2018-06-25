@@ -136,12 +136,17 @@ public class CommonMethods {
     }
 
 
-    public static Dialog dialog(Context context){
+    public static Dialog dialog(Context context,boolean show){
         dialog = new Dialog(context);
         dialog.setCancelable(false);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.spinner);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        if(show){
+            dialog.show();
+        } else {
+            dialog.dismiss();
+        }
         return dialog;
     }
 
@@ -150,6 +155,12 @@ public class CommonMethods {
         Date date = new Date();
         return formatter.format(date);
 
+    }
+    public static boolean isEmpty(String s){
+        if(s == null || s.length() == 0 || s.equals("")){
+            return true;
+        }
+        return false;
     }
 
 }

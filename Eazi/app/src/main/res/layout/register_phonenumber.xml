@@ -93,9 +93,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="9964062237"
+            android:hint="Enter your phone number"
+            android:inputType="number"
+            android:textColorHint="@color/white"
             android:id="@+id/phone_number"
             android:backgroundTint="@color/white"
+            android:textSize="16dp"
             android:layout_marginRight="30dp"
             android:textColor="@color/white"/>
     </LinearLayout>

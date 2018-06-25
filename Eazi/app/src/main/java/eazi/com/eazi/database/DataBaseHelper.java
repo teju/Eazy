@@ -44,6 +44,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public boolean putMessages(DataBaseHelper dbh,String From_NodeID,
                                      String To_Node_ID, String Message_Text,String Date , String Time){
         SQLiteDatabase sq=dbh.getWritableDatabase();
+        System.out.println("DataBaseHelper123 To_Node_ID " + To_Node_ID);
 
         ContentValues cv = new ContentValues();
         cv.put("From_User", From_NodeID);
@@ -74,7 +75,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 msg.setMessage_Text(cursor.getString(3));
                 msg.setDate(cursor.getString(4));
                 msg.setISMine(cursor.getString(5));
-                System.out.println("DataBaseHelper123 getDateRate " + cursor.getString(1));
+                System.out.println("DataBaseHelper123 getDateRate " + cursor.getString(2));
                 dataListList.add(msg);
             } while (cursor.moveToNext());
         }

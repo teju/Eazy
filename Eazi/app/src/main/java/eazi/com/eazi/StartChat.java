@@ -43,19 +43,32 @@ public class StartChat extends AppCompatActivity implements OnClickListener {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_layout);
+
+        onNewIntent(getIntent());
+
         initUI();
         initData();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            if(extras.containsKey("user_phone")) {
+                user1 = extras.getString("user_phone");
+                System.out.println("USERLIST user1 "+user1+" ");
+                initUI();
+                initData();
+
+            }
+        }
     }
 
     public void initUI(){
         msg_edittext = (EditText)findViewById(R.id.messageEditText);
         back = (ImageView)findViewById(R.id.back);
-        back.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
         msgListView = (ListView)findViewById(R.id.msgListView);
         name = (TextView)findViewById(R.id.name);
         ImageButton sendButton = (ImageButton) findViewById(R.id.sendMessageButton);
@@ -74,6 +87,7 @@ public class StartChat extends AppCompatActivity implements OnClickListener {
 
         if(getIntent().getStringExtra("user_phone") != null) {
             user1 = getIntent().getStringExtra("user_phone");
+            user1 = user1.replaceAll("\\s","");
         }
 
         List<Contact> contactList = CommonMethods.getContact(this);
@@ -87,6 +101,7 @@ public class StartChat extends AppCompatActivity implements OnClickListener {
                 }
             }
         }
+
         database = new DataBaseHelper(this);
         chatlist = new ArrayList<Messages>();
 
@@ -94,7 +109,7 @@ public class StartChat extends AppCompatActivity implements OnClickListener {
             user1 = user1+"@eazi.ai";
         }
 
-        if(!user1.contains("91")) {
+        if(!user1.startsWith("91")) {
             user1 = "91"+user1;
         }
 
@@ -109,6 +124,8 @@ public class StartChat extends AppCompatActivity implements OnClickListener {
         }
     }
 
+
+
     public void sendTextMessage(View v) {
         String message = msg_edittext.getEditableText().toString();
 
@@ -122,6 +139,13 @@ public class StartChat extends AppCompatActivity implements OnClickListener {
             Invite activity = new Invite();
             activity.getmService().xmpp.sendMessage(message,user1);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(this,Invite.class);
+        startActivity(i);
     }
 
     @Override

@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -62,7 +63,6 @@ public class RegisterPhoneNumber extends AppCompatActivity implements View.OnCli
 
     public void initUI(){
         rootView=findViewById(android.R.id.content);
-
         country_spinner = (Spinner)findViewById(R.id.country_list);
         country_code_spinner = (Spinner)findViewById(R.id.country_code);
         ok = (Button)findViewById(R.id.ok);
@@ -86,7 +86,12 @@ public class RegisterPhoneNumber extends AppCompatActivity implements View.OnCli
                 if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_READ_PHONE_STATE);
                 } else {
-                    callApiRegister();
+                    if(phone_number.getText().toString().length() != 0) {
+                        callApiRegister();
+                    } else {
+                        Toast.makeText(getApplicationContext(),"Enter the phone Number",Toast.LENGTH_LONG).show();
+                        phone_number.setError("Enter Phone Number");
+                    }
                 }
                 break;
         }
@@ -98,7 +103,8 @@ public class RegisterPhoneNumber extends AppCompatActivity implements View.OnCli
             JSONObject jsonObject = new JSONObject();
 
             try {
-                jsonObject.put("mdn", "91"+phone_number.getText().toString());
+                jsonObject.put("mdn", "91"+phone_number.getText().toString().replaceAll("\\s",""));
+                ;
                 jsonObject.put("type", "android");
                 jsonObject.put("device_id", CommonMethods.getDeviceIMEI(RegisterPhoneNumber.this));
             } catch (JSONException e) {
@@ -117,7 +123,7 @@ public class RegisterPhoneNumber extends AppCompatActivity implements View.OnCli
             JSONObject jsonObject = new JSONObject();
 
             try {
-                jsonObject.put("mdn", "91"+phone_number.getText().toString());
+                jsonObject.put("mdn", "91"+phone_number.getText().toString().replaceAll("\\s",""));
                 jsonObject.put("code", 1234);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -289,8 +295,15 @@ public class RegisterPhoneNumber extends AppCompatActivity implements View.OnCli
                 // result of the request.
             }
         } else {
-            Intent i = new Intent(RegisterPhoneNumber.this,PhoneVerification.class);
-            startActivity(i);
+            System.out.println("PHONEVERIFIED "+CommonMethods.getSharedPrefValue(this,Constants.user_verified));
+            if(CommonMethods.getSharedPrefValue(this,Constants.user_verified).equals("false")
+                    || CommonMethods.isEmpty(CommonMethods.getSharedPrefValue(this,Constants.user_verified))) {
+                Intent i = new Intent(RegisterPhoneNumber.this, PhoneVerification.class);
+                startActivity(i);
+            } else {
+                Intent i = new Intent(RegisterPhoneNumber.this, Invite.class);
+                startActivity(i);
+            }
 
         }
     }

@@ -6,34 +6,57 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import eazi.com.eazi.utils.CommonMethods;
+import eazi.com.eazi.utils.Constants;
 
 /**
  * Created by tejaswini on 19/05/18.
  */
 
-public class PhoneVerification extends AppCompatActivity {
+public class PhoneVerification extends AppCompatActivity implements View.OnClickListener {
+
+    private Button edit;
+    private TextView phone_number;
+    private Button ok;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.phone_verification);
-        Button edit = (Button) findViewById(R.id.edit);
-        edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i =new Intent(PhoneVerification.this,RegisterPhoneNumber.class);
+        initUI();
+        initData();
+
+    }
+    public void initUI(){
+        edit = (Button) findViewById(R.id.edit);
+        phone_number = (TextView) findViewById(R.id.phone_number);
+        ok = (Button) findViewById(R.id.ok);
+    }
+
+    public void initData(){
+        edit.setOnClickListener(this);
+        phone_number.setText(CommonMethods.getSharedPrefValue(this, Constants.user_name));
+        ok.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent i ;
+
+        switch (v.getId()){
+            case R.id.edit:
+                 i =new Intent(PhoneVerification.this,RegisterPhoneNumber.class);
                 startActivity(i);
                 finish();
-            }
-        });
-        Button ok = (Button) findViewById(R.id.ok);
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i =new Intent(PhoneVerification.this,SmsVerification.class);
+                break;
+            case R.id.ok:
+                 i =new Intent(PhoneVerification.this,SmsVerification.class);
                 startActivity(i);
                 finish();
-            }
-        });
+                break;
+        }
     }
 }

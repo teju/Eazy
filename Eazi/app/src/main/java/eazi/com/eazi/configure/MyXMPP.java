@@ -42,6 +42,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
@@ -116,24 +117,6 @@ public class MyXMPP {
 
 
 
-/*
-    private void initialiseConnection() {
-
-        XMPPTCPConnectionConfiguration.Builder config = XMPPTCPConnectionConfiguration.builder();
-        config.setSecurityMode(ConnectionConfiguration.SecurityMode.disabled);
-        config.setServiceName(serverAddress);
-        config.setHost(serverAddress);
-        config.setPort(5222);
-        config.setDebuggerEnabled(true);
-        XMPPTCPConnection.setUseStreamManagementResumptiodDefault(true);
-        XMPPTCPConnection.setUseStreamManagementDefault(true);
-        connection = new XMPPTCPConnection(config.build());
-
-        XMPPConnectionListener connectionListener = new XMPPConnectionListener();
-        connection.addConnectionListener(connectionListener);
-
-    }
-*/
     public void initialiseConnection(){
         // Create the configuration for this new connection
 
@@ -264,6 +247,7 @@ public class MyXMPP {
         } catch (XmppStringprepException e) {
             e.printStackTrace();
         }
+        System.out.println("");
 
         if(connection != null) {
 
@@ -295,7 +279,6 @@ public class MyXMPP {
             @Override
             public void run() {
                 DataBaseHelper database = new DataBaseHelper(context);
-                System.out.println("processMessage "+chatMessage.getBody() +" receiver "+receiver);
                 database.putMessages(database, CommonMethods.getSharedPrefValue(context, Constants.user_name)
                         ,receiver,chatMessage.getBody(),CommonMethods.getDate(),"false");
                 //ChatAdapter chatAdapter = new ChatAdapter(context, receiver);
@@ -308,7 +291,9 @@ public class MyXMPP {
                         .getSystemService(Context.NOTIFICATION_SERVICE);
                 Intent intent = new Intent(context, StartChat.class);
                 intent.putExtra(Constants.userPhoneIntent,receiver);
-                PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
+                System.out.println("processMessage "+chatMessage.getBody() +" receiver "+receiver);
+
+                PendingIntent pendingIntent = PendingIntent.getActivity(context, new Random().nextInt(),
                         intent, 0);
                 Notification.Builder builder = new Notification.Builder(context);
                                      builder.setSmallIcon(R.drawable. notification_template_icon_bg)
