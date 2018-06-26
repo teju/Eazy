@@ -10,7 +10,11 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
     @IBOutlet weak var language_title: UILabel!
+    @IBOutlet weak var messages: UILabel!
+    @IBOutlet weak var msg_bg: UIView!
     
+    @IBOutlet weak var rightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var leftConstraint: NSLayoutConstraint!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

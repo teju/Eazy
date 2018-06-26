@@ -10,14 +10,17 @@ import UIKit
 
 class EditPhoneNumber: UIViewController {
 
+    @IBOutlet weak var phone_number: UILabel!
     @IBOutlet weak var okButton: UIButton!
     @IBOutlet weak var changeButton: UIButton!
+    var phoneNumber : String?
     override func viewDidLoad() {
         super.viewDidLoad()
         changeButton?.layer.cornerRadius = 15
         changeButton?.clipsToBounds = true
         okButton?.layer.cornerRadius = 15
         okButton?.clipsToBounds = true
+        phone_number.text = phoneNumber
         // Do any additional setup after loading the view.
     }
 
@@ -35,7 +38,9 @@ class EditPhoneNumber: UIViewController {
     @IBAction func submit(_ sender: Any) {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: AppConstants.Storyboards.Main.rawValue, bundle: nil)
         let smsVerification = mainStoryboard.instantiateViewController(withIdentifier: "SmsVerification") as! SmsVerification
+        smsVerification.phoneNumber = phone_number.text
         self.navigationController?.pushViewController(smsVerification, animated: true)
+
     }
     
 

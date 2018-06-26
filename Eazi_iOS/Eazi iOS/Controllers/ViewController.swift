@@ -13,7 +13,6 @@ class ViewController: UIViewController,FSPagerViewDataSource,FSPagerViewDelegate
 
     @IBOutlet weak var banner_desc: UILabel!
     @IBOutlet weak var banner_title: UILabel!
-    var xmppController: XMPPController?
 
     @IBOutlet weak var pagerView: FSPagerView!
         {
@@ -55,16 +54,7 @@ class ViewController: UIViewController,FSPagerViewDataSource,FSPagerViewDelegate
         
     }
     
-    private func setupStream() {
-        do {
-            try self.xmppController = XMPPController(hostName: "198.74.57.124",
-                                                     userJIDString: "919964062237@eazi.ai",
-                                                     password: "9199640622371234")
-            self.xmppController?.xmppStream?.addDelegate(self, delegateQueue: DispatchQueue.main)
-            self.xmppController?.connect()
-        } catch {
-        }
-    }
+    
     @IBAction func agree(_ sender: Any) {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: AppConstants.Storyboards.Main.rawValue, bundle: nil)
         let language = mainStoryboard.instantiateViewController(withIdentifier: "LanguageViewController") as! LanguageViewController

@@ -12,9 +12,31 @@ import Contacts
 import CoreData
 import CoreTelephony
 import CallKit
+import MBProgressHUD
+
 class Utils {
     static var gradientLayer: CAGradientLayer!
+    static var cview : UIView?
+    private static var hud:MBProgressHUD!
 
+    static func setupNotificationReminder() {
+        var title:String = "Your reminder text goes here"
+        
+        let date = Date()
+        
+        // create a corresponding local notification
+        let notification = UILocalNotification()
+        
+        let dict:NSDictionary = ["ID" : "your ID goes here"]
+        notification.userInfo = dict as! [String : String]
+        notification.alertBody = "\(title)"
+        notification.alertAction = "Open"
+        notification.fireDate = Date()
+        notification.repeatInterval = .year  // Can be used to repeat the notification
+        notification.soundName = UILocalNotificationDefaultSoundName
+        UIApplication.shared.scheduleLocalNotification(notification)
+    }
+    
     static func hexStringToUIColor (hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
@@ -53,7 +75,6 @@ class Utils {
                 
                 if contact.isKeyAvailable(CNContactImageDataKey) {
                     if let contactImageData = contact.imageData {
-                        print(UIImage(data: contactImageData)) // Print the image set on the contact
                     }
                 } else {
                     // No Image available
@@ -68,17 +89,31 @@ class Utils {
             NSLog("Fetch contact error: \(error)")
         }
         
-        NSLog(">>>> Contact list:")
         for contact in cnContacts {
             let fullName = CNContactFormatter.string(from: contact, style: .fullName) ?? "No Name"
 
-            NSLog("Name \(fullName):")
         }
         return objects
     }
     
+    static func htmlToString(mstring : String) -> String {
+        let htmlStringData = mstring.data(using: String.Encoding.utf8)!
+        
+        let options =  try? NSAttributedString(data: htmlStringData, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+        
+        let string = options?.string
+        return string!
+    }
   
+    static func getCurrentDate() -> String{
+        let formatter = DateFormatter()
+        // initially set the format based on your datepicker date / server String
+        formatter.dateFormat = "dd MMM yyyy hh:mm:ss a"
     
+        let myString = formatter.string(from: Date()) // string purpose I add here
+        print(myString)
+        return myString
+    }
   static func  getContacts() -> CNContactStore {
         let store = CNContactStore()
         
@@ -132,4 +167,63 @@ class Utils {
         lineLayer.fillColor  = UIColor.clear.cgColor
         button.layer.insertSublayer(lineLayer, at: 0)
     }
+    static func placeHolderText(textFiled :UITextField , color : UIColor, text : String){
+        textFiled.attributedPlaceholder = NSAttributedString(string: text,
+                                                             attributes: [NSAttributedStringKey.foregroundColor: color])
+    }
+    class func showProgressHudToView(view:UIView, message:String) {
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        if !appDelegate.loaderFlag {
+            
+            hud = MBProgressHUD.showAdded(to: view, animated: true)
+            hud.label.text = message
+            hud.minSize = CGSize.init(width: 150, height: 100)
+        }
+        else{
+            appDelegate.loaderFlag = false
+        }
+    }
+    
+    class func isProgressHudToView(view:UIView) {
+        if(hud != nil ) {
+            hud.hide(animated: true)
+            
+        }
+    }
+    class alert {
+        func msg(message: String, title: String = "")
+        {
+            let alertView = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
+            alertView.addAction(UIAlertAction(title: "Done", style: .default, handler: {(action: UIAlertAction!) in self.myFunc(alert:alertView)}))
+            
+            UIApplication.shared.keyWindow?.rootViewController?.present(alertView, animated: true, completion: nil)
+        }
+        
+        func myFunc(alert: UIAlertController) {
+            DispatchQueue.main.async(){
+                // your code with delay
+                alert.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    class func showError(error:String, viewController:UIViewController) {
+        
+        var errMessage:String = ""
+        errMessage = error
+        
+        let alert:UIAlertController = Utils.getAlertControllerWithMessage(message: errMessage)
+        
+        viewController.present(alert, animated: true, completion: nil)
+    }
+    
+    class func getAlertControllerWithMessage(message:String) -> UIAlertController {
+        
+        let alert = UIAlertController(title: AppConstants.alertTitle, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        return alert
+    }
+    
 }

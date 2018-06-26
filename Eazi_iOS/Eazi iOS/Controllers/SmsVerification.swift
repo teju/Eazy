@@ -9,9 +9,13 @@
 import UIKit
 
 class SmsVerification: UIViewController {
+    var phoneNumber : String?
 
+    @IBOutlet weak var phone_number: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        phone_number.text = phoneNumber
+
         resendSmsButton?.layer.cornerRadius = 15
         resendSmsButton?.clipsToBounds = true
         okButton?.layer.cornerRadius = 15
@@ -26,6 +30,8 @@ class SmsVerification: UIViewController {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: AppConstants.Storyboards.Main.rawValue, bundle: nil)
         let circleMenu = mainStoryboard.instantiateViewController(withIdentifier: "CircleMenu") as! CircleMenu
         self.navigationController?.pushViewController(circleMenu, animated: true)
+        UserDefaults.standard.set(true, forKey: AppConstants.userDefaults.isLoggedIn.rawValue)
+
     }
     
     override func didReceiveMemoryWarning() {

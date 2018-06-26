@@ -122,7 +122,7 @@ public final class FlowingMenuTransitionManager: UIPercentDrivenInteractiveTrans
 
     // Defining the menu frame
     var menuFrame        = menuView.frame
-    menuFrame.size.width = menuWidth
+    menuFrame.size.width = menuWidth + 30
     menuView.frame       = menuFrame
 
     // Start the animations

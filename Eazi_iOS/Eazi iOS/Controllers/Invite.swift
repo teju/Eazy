@@ -15,16 +15,21 @@ class Invite: UIViewController,FlowingMenuDelegate {
     let DismissSegueName = "DismissMenuSegue"
     let mainColor  = Utils.hexStringToUIColor(hex: "#e0e6ec")
     var pageMenu : CAPSPageMenu?
-
+    static var navController : UINavigationController?
     @IBOutlet weak var inviteButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("viewDidAppear")
         flowingMenuTransitionManager.setInteractivePresentationView(view)
         flowingMenuTransitionManager.delegate = self
         inviteButton?.layer.cornerRadius = 15
         inviteButton?.clipsToBounds = true
         pageM()
-        
+        Invite.navController = self.navigationController
         let button = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - 90 , y: UIScreen.main.bounds.height - 100, width: 60, height: 60))
         button.backgroundColor = Utils.hexStringToUIColor(hex: "#ff9d86")
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
@@ -32,16 +37,26 @@ class Invite: UIViewController,FlowingMenuDelegate {
         button.layer.cornerRadius = 0.5 * button.bounds.size.width
         button.clipsToBounds = true
         self.view.addSubview(button)
-        
     }
     
-    @objc func buttonAction(sender: UIButton!) {
-        print("Button tapped")
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: AppConstants.Storyboards.Main.rawValue, bundle: nil)
-        let profilePage = mainStoryboard.instantiateViewController(withIdentifier: "ProfilePage") as! ProfilePage
-        self.navigationController?.pushViewController(profilePage, animated: true)
+    override func viewWillDisappear(_ animated: Bool) {
+        print("viewDidAppear viewWillDisappear")
     }
+    override func viewDidDisappear(_ animated: Bool) {
+        print("viewDidAppear viewWillDisappear")
 
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        print("viewDidAppear  ")
+
+    }
+    @objc func buttonAction(sender: UIButton!) {
+//        print("Button tapped")
+//        let mainStoryboard: UIStoryboard = UIStoryboard(name: AppConstants.Storyboards.Main.rawValue, bundle: nil)
+//        let profilePage = mainStoryboard.instantiateViewController(withIdentifier: "ProfilePage") as! ProfilePage
+//        self.navigationController?.pushViewController(profilePage, animated: true)
+        
+    }
     @IBAction func profile_page(_ sender: Any) {
       
     }

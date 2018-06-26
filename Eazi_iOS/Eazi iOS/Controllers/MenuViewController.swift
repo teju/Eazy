@@ -31,7 +31,8 @@ final class MenuViewController: UIViewController, UITableViewDataSource, UITable
         userTableView.backgroundColor = mainColor
         view.backgroundColor          = mainColor
         let store = Utils.getContacts()
-    
+        userTableView.delegate = self
+        userTableView.dataSource = self
         objects = Utils.retrieveContactsWithStore(store: store)
     }
     
@@ -53,26 +54,12 @@ final class MenuViewController: UIViewController, UITableViewDataSource, UITable
         let fullName = CNContactFormatter.string(from: contact, style: .fullName) ?? "No Name"
         cell.displayNameLabel.text = fullName
 
-//        if let actualNumber = contact.phoneNumbers.first?.value as? CNPhoneNumber {
-//           
-//            cell.displayNameLabel.text = actualNumber.stringValue
-//        }
-//        else{
-//            cell.displayNameLabel.text = "N.A "
-//        }
-        
-       // cell.avatarImageView.image = user.avatarImage()
-       // cell.statusView.isHidden     = "!user.newMessage"
         if let imageData = contact.imageData {
             //If so create the image
             let userImage = UIImage(data: imageData)
             cell.avatarImageView.image = userImage;
         }
-            
-        else{
-            
-        }
-
+        
         cell.contentView.backgroundColor = mainColor
         
         return cell
@@ -81,6 +68,16 @@ final class MenuViewController: UIViewController, UITableViewDataSource, UITable
     // MARK: - UITableView Delegate Methods
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Select row at \(indexPath)")
+        let contact = self.objects[indexPath.row]
+        let actualNumber = contact.phoneNumbers.first?.value as? CNPhoneNumber
+        let fullName = CNContactFormatter.string(from: contact, style: .fullName) ?? "No Name"
+
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: AppConstants.Storyboards.Main.rawValue, bundle: nil)
+        
+        let profilePage = mainStoryboard.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+        profilePage.to_user = actualNumber?.stringValue
+        profilePage.userN = fullName
+        self.present(profilePage, animated: true, completion: nil)
+
     }
 }

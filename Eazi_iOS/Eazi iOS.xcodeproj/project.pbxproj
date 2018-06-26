@@ -46,10 +46,27 @@
 		D833BE1F20B9BA74003E7BC6 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D833BE1E20B9BA74003E7BC6 /* MenuViewController.swift */; };
 		D888D81320BA87DC00B50D2F /* UserChatCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888D81220BA87DC00B50D2F /* UserChatCellView.swift */; };
 		D888D81520BA8FC200B50D2F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888D81420BA8FC200B50D2F /* Utils.swift */; };
-		D8A8D86E20E0E8EF00D60A97 /* XMPPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A8D86D20E0E8EF00D60A97 /* XMPPController.swift */; };
 		D8A8D8D320E1277300D60A97 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A8D8D220E1277300D60A97 /* Contacts.framework */; };
 		D8A8D8D520E1278A00D60A97 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A8D8D420E1278A00D60A97 /* ContactsUI.framework */; };
 		D8A8D8D720E1279600D60A97 /* CallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A8D8D620E1279600D60A97 /* CallKit.framework */; };
+		D8A8D8DB20E13EF200D60A97 /* ChatBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A8D8DA20E13EF200D60A97 /* ChatBubble.swift */; };
+		D8A8D8DE20E13F6500D60A97 /* ChatBubbleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A8D8DD20E13F6500D60A97 /* ChatBubbleData.swift */; };
+		D8A8D8E620E151BB00D60A97 /* DemoConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A8D8E520E151BB00D60A97 /* DemoConversation.swift */; };
+		D8A8D8E820E151CE00D60A97 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A8D8E720E151CE00D60A97 /* Conversation.swift */; };
+		D8A8D8FA20E1560200D60A97 /* jsq_messages_sample.m4a in Resources */ = {isa = PBXBuildFile; fileRef = D8A8D8F920E1560100D60A97 /* jsq_messages_sample.m4a */; };
+		D8A8D92E20E2224200D60A97 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A8D92D20E2224200D60A97 /* ChatViewController.swift */; };
+		D8A8D93120E23ADC00D60A97 /* SqliteDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A8D93020E23ADC00D60A97 /* SqliteDataBase.swift */; };
+		D8A8D93320E23D2300D60A97 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A8D93220E23D2300D60A97 /* Messages.swift */; };
+		D8A8D93820E2972200D60A97 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A8D93520E2972100D60A97 /* NetworkConstants.swift */; };
+		D8A8D93920E2972200D60A97 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A8D93620E2972200D60A97 /* Reachability.swift */; };
+		D8A8D93A20E2972200D60A97 /* PANetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A8D93720E2972200D60A97 /* PANetworkManager.swift */; };
+		D8A8D93C20E298D900D60A97 /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A8D93B20E298D900D60A97 /* Validations.swift */; };
+		D8A8D94720E29C6F00D60A97 /* ToastCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A8D94020E29C6E00D60A97 /* ToastCenter.swift */; };
+		D8A8D94820E29C6F00D60A97 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = D8A8D94120E29C6E00D60A97 /* LICENSE */; };
+		D8A8D94920E29C6F00D60A97 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D8A8D94320E29C6E00D60A97 /* README.md */; };
+		D8A8D94A20E29C6F00D60A97 /* ToastWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A8D94420E29C6F00D60A97 /* ToastWindow.swift */; };
+		D8A8D94B20E29C6F00D60A97 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A8D94520E29C6F00D60A97 /* ToastView.swift */; };
+		D8A8D94C20E29C6F00D60A97 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A8D94620E29C6F00D60A97 /* Toast.swift */; };
 		D8DD765620D1A5AC00D56CDE /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DD765520D1A5AC00D56CDE /* ProfilePage.swift */; };
 		D8FA8D3B20BE76AA00BE0806 /* Chats.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FA8D3920BE76AA00BE0806 /* Chats.swift */; };
 		D8FA8D3C20BE76AA00BE0806 /* Chats.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8FA8D3A20BE76AA00BE0806 /* Chats.xib */; };
@@ -123,10 +140,28 @@
 		D833BE1E20B9BA74003E7BC6 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		D888D81220BA87DC00B50D2F /* UserChatCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserChatCellView.swift; sourceTree = "<group>"; };
 		D888D81420BA8FC200B50D2F /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		D8A8D86D20E0E8EF00D60A97 /* XMPPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMPPController.swift; sourceTree = "<group>"; };
 		D8A8D8D220E1277300D60A97 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		D8A8D8D420E1278A00D60A97 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
 		D8A8D8D620E1279600D60A97 /* CallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CallKit.framework; path = System/Library/Frameworks/CallKit.framework; sourceTree = SDKROOT; };
+		D8A8D8DA20E13EF200D60A97 /* ChatBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatBubble.swift; path = "../../../../../../Downloads/ChatBubbleFinal-master/ChatBubbleFinal/CustomView/ChatBubble.swift"; sourceTree = "<group>"; };
+		D8A8D8DD20E13F6500D60A97 /* ChatBubbleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatBubbleData.swift; path = "../../../../../../Downloads/ChatBubbleFinal-master/ChatBubbleFinal/DataModel/ChatBubbleData.swift"; sourceTree = "<group>"; };
+		D8A8D8E520E151BB00D60A97 /* DemoConversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoConversation.swift; sourceTree = "<group>"; };
+		D8A8D8E720E151CE00D60A97 /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		D8A8D8F920E1560100D60A97 /* jsq_messages_sample.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = jsq_messages_sample.m4a; sourceTree = "<group>"; };
+		D8A8D92D20E2224200D60A97 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		D8A8D93020E23ADC00D60A97 /* SqliteDataBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SqliteDataBase.swift; sourceTree = "<group>"; };
+		D8A8D93220E23D2300D60A97 /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
+		D8A8D93520E2972100D60A97 /* NetworkConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
+		D8A8D93620E2972200D60A97 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		D8A8D93720E2972200D60A97 /* PANetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PANetworkManager.swift; sourceTree = "<group>"; };
+		D8A8D93B20E298D900D60A97 /* Validations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
+		D8A8D94020E29C6E00D60A97 /* ToastCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastCenter.swift; sourceTree = "<group>"; };
+		D8A8D94120E29C6E00D60A97 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		D8A8D94220E29C6E00D60A97 /* Toaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toaster.h; sourceTree = "<group>"; };
+		D8A8D94320E29C6E00D60A97 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D8A8D94420E29C6F00D60A97 /* ToastWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastWindow.swift; sourceTree = "<group>"; };
+		D8A8D94520E29C6F00D60A97 /* ToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		D8A8D94620E29C6F00D60A97 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		D8DD765520D1A5AC00D56CDE /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
 		D8FA8D3920BE76AA00BE0806 /* Chats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chats.swift; sourceTree = "<group>"; };
 		D8FA8D3A20BE76AA00BE0806 /* Chats.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Chats.xib; sourceTree = "<group>"; };
@@ -211,6 +246,10 @@
 		D833BD9B20B942BD003E7BC6 /* Eazi iOS */ = {
 			isa = PBXGroup;
 			children = (
+				D8A8D93420E296FF00D60A97 /* APIMAnager */,
+				D8A8D92F20E23AAA00D60A97 /* database */,
+				D8A8D8F920E1560100D60A97 /* jsq_messages_sample.m4a */,
+				D8A8D8DC20E13F4A00D60A97 /* model */,
 				D8A8D86C20E0E8D800D60A97 /* Config */,
 				D833BDF020B96C0A003E7BC6 /* Utils */,
 				D833BDED20B96B14003E7BC6 /* Views */,
@@ -254,6 +293,7 @@
 				D8FA8D5320BE867900BE0806 /* Groups.swift */,
 				D8FA8D5420BE867900BE0806 /* Groups.xib */,
 				D8DD765520D1A5AC00D56CDE /* ProfilePage.swift */,
+				D8A8D92D20E2224200D60A97 /* ChatViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -261,6 +301,7 @@
 		D833BDBE20B96709003E7BC6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D8A8D93F20E29C5700D60A97 /* Toaster */,
 				D8FA8D2620BE751100BE0806 /* PageMenu */,
 				D833BE0D20B9AEBC003E7BC6 /* FlowingMenu */,
 				D833BDFE20B96F33003E7BC6 /* CircleMenu */,
@@ -287,6 +328,7 @@
 		D833BDED20B96B14003E7BC6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D8A8D8DA20E13EF200D60A97 /* ChatBubble.swift */,
 				D833BDEE20B96B2B003E7BC6 /* TableViewCell.swift */,
 				D888D81220BA87DC00B50D2F /* UserChatCellView.swift */,
 			);
@@ -296,6 +338,7 @@
 		D833BDF020B96C0A003E7BC6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D8A8D93B20E298D900D60A97 /* Validations.swift */,
 				D833BDF120B96C18003E7BC6 /* AppConstants.swift */,
 				D888D81420BA8FC200B50D2F /* Utils.swift */,
 			);
@@ -333,9 +376,51 @@
 		D8A8D86C20E0E8D800D60A97 /* Config */ = {
 			isa = PBXGroup;
 			children = (
-				D8A8D86D20E0E8EF00D60A97 /* XMPPController.swift */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		D8A8D8DC20E13F4A00D60A97 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				D8A8D8E720E151CE00D60A97 /* Conversation.swift */,
+				D8A8D8E520E151BB00D60A97 /* DemoConversation.swift */,
+				D8A8D8DD20E13F6500D60A97 /* ChatBubbleData.swift */,
+				D8A8D93220E23D2300D60A97 /* Messages.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		D8A8D92F20E23AAA00D60A97 /* database */ = {
+			isa = PBXGroup;
+			children = (
+				D8A8D93020E23ADC00D60A97 /* SqliteDataBase.swift */,
+			);
+			path = database;
+			sourceTree = "<group>";
+		};
+		D8A8D93420E296FF00D60A97 /* APIMAnager */ = {
+			isa = PBXGroup;
+			children = (
+				D8A8D93520E2972100D60A97 /* NetworkConstants.swift */,
+				D8A8D93720E2972200D60A97 /* PANetworkManager.swift */,
+				D8A8D93620E2972200D60A97 /* Reachability.swift */,
+			);
+			path = APIMAnager;
+			sourceTree = "<group>";
+		};
+		D8A8D93F20E29C5700D60A97 /* Toaster */ = {
+			isa = PBXGroup;
+			children = (
+				D8A8D94120E29C6E00D60A97 /* LICENSE */,
+				D8A8D94320E29C6E00D60A97 /* README.md */,
+				D8A8D94620E29C6F00D60A97 /* Toast.swift */,
+				D8A8D94020E29C6E00D60A97 /* ToastCenter.swift */,
+				D8A8D94220E29C6E00D60A97 /* Toaster.h */,
+				D8A8D94520E29C6F00D60A97 /* ToastView.swift */,
+				D8A8D94420E29C6F00D60A97 /* ToastWindow.swift */,
+			);
+			path = Toaster;
 			sourceTree = "<group>";
 		};
 		D8FA8D2620BE751100BE0806 /* PageMenu */ = {
@@ -405,6 +490,11 @@
 				TargetAttributes = {
 					D833BD9820B942BD003E7BC6 = {
 						CreatedOnToolsVersion = 9.3.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					D833BDAC20B942C1003E7BC6 = {
 						CreatedOnToolsVersion = 9.3.1;
@@ -436,11 +526,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8A8D8FA20E1560200D60A97 /* jsq_messages_sample.m4a in Resources */,
 				D833BDA720B942C1003E7BC6 /* LaunchScreen.storyboard in Resources */,
+				D8A8D94920E29C6F00D60A97 /* README.md in Resources */,
 				D8FA8D5620BE867900BE0806 /* Groups.xib in Resources */,
 				D8FA8D5220BE866900BE0806 /* Favourite.xib in Resources */,
 				D8FA8D3C20BE76AA00BE0806 /* Chats.xib in Resources */,
 				D833BDA420B942C1003E7BC6 /* Assets.xcassets in Resources */,
+				D8A8D94820E29C6F00D60A97 /* LICENSE in Resources */,
 				D833BDA220B942BD003E7BC6 /* Main.storyboard in Resources */,
 				D8FA8D4020BE7B9700BE0806 /* Contacts.xib in Resources */,
 			);
@@ -478,16 +571,32 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Eazi iOS/Pods-Eazi iOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/KissXML/KissXML.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/XMPPFramework/XMPPFramework.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KissXML.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XMPPFramework.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -520,19 +629,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8A8D93820E2972200D60A97 /* NetworkConstants.swift in Sources */,
 				D833BE0720B96F4B003E7BC6 /* CircleIconView.swift in Sources */,
+				D8A8D94B20E29C6F00D60A97 /* ToastView.swift in Sources */,
+				D8A8D93920E2972200D60A97 /* Reachability.swift in Sources */,
 				D833BDEC20B96A11003E7BC6 /* LanguageViewController.swift in Sources */,
 				D833BDE820B96925003E7BC6 /* FSPageControl.swift in Sources */,
 				D833BDFA20B96EC9003E7BC6 /* CircleMenu.swift in Sources */,
 				D8FA8D4820BE7DC700BE0806 /* CAPSPageMenu.swift in Sources */,
 				D833BDE520B96925003E7BC6 /* FSPageViewLayout.swift in Sources */,
 				D833BE0A20B96F4B003E7BC6 /* CircleThumbInner.swift in Sources */,
+				D8A8D8DE20E13F6500D60A97 /* ChatBubbleData.swift in Sources */,
+				D8A8D92E20E2224200D60A97 /* ChatViewController.swift in Sources */,
 				D833BD9F20B942BD003E7BC6 /* ViewController.swift in Sources */,
 				D8FA8D5520BE867900BE0806 /* Groups.swift in Sources */,
 				D8FA8D4C20BE7DC700BE0806 /* CAPSPageMenuConfiguration.swift in Sources */,
 				D833BE1F20B9BA74003E7BC6 /* MenuViewController.swift in Sources */,
+				D8A8D8E820E151CE00D60A97 /* Conversation.swift in Sources */,
+				D8A8D93120E23ADC00D60A97 /* SqliteDataBase.swift in Sources */,
 				D833BDE920B96925003E7BC6 /* FSPagerViewCell.swift in Sources */,
 				D888D81520BA8FC200B50D2F /* Utils.swift in Sources */,
+				D8A8D93320E23D2300D60A97 /* Messages.swift in Sources */,
 				D833BE1620B9AF26003E7BC6 /* FlowingMenuTransitionManager+UIViewControllerAnimatedTransitioning.swift in Sources */,
 				D833BDF620B96E73003E7BC6 /* EditPhoneNumber.swift in Sources */,
 				D833BE1C20B9AF26003E7BC6 /* FlowingMenuTransitionStatus.swift in Sources */,
@@ -541,12 +658,17 @@
 				D8DD765620D1A5AC00D56CDE /* ProfilePage.swift in Sources */,
 				D833BE1820B9AF26003E7BC6 /* FlowingMenuDelegate.swift in Sources */,
 				D833BDF420B96D52003E7BC6 /* RegisterPhoneNumber.swift in Sources */,
+				D8A8D94720E29C6F00D60A97 /* ToastCenter.swift in Sources */,
 				D833BDE620B96925003E7BC6 /* FSPagerCollectionView.swift in Sources */,
-				D8A8D86E20E0E8EF00D60A97 /* XMPPController.swift in Sources */,
+				D8A8D94A20E29C6F00D60A97 /* ToastWindow.swift in Sources */,
 				D833BE0C20B9A755003E7BC6 /* Invite.swift in Sources */,
+				D8A8D94C20E29C6F00D60A97 /* Toast.swift in Sources */,
 				D833BDEF20B96B2B003E7BC6 /* TableViewCell.swift in Sources */,
 				D8FA8D3B20BE76AA00BE0806 /* Chats.swift in Sources */,
+				D8A8D93A20E2972200D60A97 /* PANetworkManager.swift in Sources */,
 				D833BE0820B96F4B003E7BC6 /* CircleGestureRecognizer.swift in Sources */,
+				D8A8D93C20E298D900D60A97 /* Validations.swift in Sources */,
+				D8A8D8DB20E13EF200D60A97 /* ChatBubble.swift in Sources */,
 				D833BE1D20B9AF26003E7BC6 /* FlowingMenuTransitionManager.swift in Sources */,
 				D833BE0920B96F4B003E7BC6 /* Circle.swift in Sources */,
 				D833BDF220B96C18003E7BC6 /* AppConstants.swift in Sources */,
@@ -565,6 +687,7 @@
 				D8FA8D5120BE866900BE0806 /* Favourite.swift in Sources */,
 				D833BE1B20B9AF26003E7BC6 /* FlowingMenuTransitionManager+UIGestureRecognizer.swift in Sources */,
 				D833BE0520B96F4B003E7BC6 /* CircleOverlayView.swift in Sources */,
+				D8A8D8E620E151BB00D60A97 /* DemoConversation.swift in Sources */,
 				D888D81320BA87DC00B50D2F /* UserChatCellView.swift in Sources */,
 				D8FA8D4D20BE7DC700BE0806 /* CAPSPageMenu+Options.swift in Sources */,
 			);

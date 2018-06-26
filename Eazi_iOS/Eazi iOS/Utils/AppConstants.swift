@@ -75,6 +75,23 @@ class AppConstants {
         case story          = "story"
     }
     
+    enum userDefaults:String {
+        case user_data    = "user_data"
+        case user_pass    = "user_pass"
+
+        case isLoggedIn   = "isLoggedIn"
+        case subscribedCountries = "subscribedCountries"
+        case server_date   = "server_date"
+        case myContacts    = "myContacts"
+        case recent_alerts = "recent_alerts"
+        case Notification_status = "Notification_status"
+        case token =       "token"
+        case subscriptionDate =       "subscriptionDate"
+        case recentAlertDate =       "recentAlertDate"
+        case trackLocation =       "trackLocation"
+        case accountType =       "AccountType"
+        
+    }
    
    
     
