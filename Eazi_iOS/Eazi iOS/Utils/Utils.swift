@@ -110,6 +110,30 @@ class Utils {
         })
         return result
     }
+
+    static func getContactName(to_user: String) -> String {
+        var objects  = [CNContact]()
+        var user_name = ""
+        
+        let store = Utils.getContacts()
+        objects = Utils.retrieveContactsWithStore(store: store)
+        for index in 0 ... objects.count - 1 {
+            let contact = objects[index]
+            let actualNumber = contact.phoneNumbers.first?.value as? CNPhoneNumber
+        
+            var string = actualNumber?.stringValue
+            string = string?.replacingOccurrences(of: " ", with: "")
+            print("actualNumber123 \(string) to_user \(to_user)")
+
+            if to_user.range(of:string!) != nil {
+                print("exists")
+                let fullName = CNContactFormatter.string(from: contact, style: .fullName) ?? "No Name"
+                return fullName
+                break
+            }
+        }
+        return user_name
+    }
     
     static func htmlToString(mstring : String) -> String {
         let htmlStringData = mstring.data(using: String.Encoding.utf8)!

@@ -10,6 +10,9 @@
 		824AAB252DC43A207656BB22 /* Pods_Eazi_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5811503ABA06C40BF880F622 /* Pods_Eazi_iOS.framework */; };
 		D831116C20E37E7F009F62C8 /* VPMOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D831116A20E37E7E009F62C8 /* VPMOTPView.swift */; };
 		D831116D20E37E7F009F62C8 /* VPMOTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D831116B20E37E7F009F62C8 /* VPMOTPTextField.swift */; };
+		D831117220E5017D009F62C8 /* CustomChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D831117020E5017D009F62C8 /* CustomChatCell.swift */; };
+		D831117320E5017D009F62C8 /* CustomChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D831117120E5017D009F62C8 /* CustomChatCell.xib */; };
+		D831117520E508D3009F62C8 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = D831117420E508D3009F62C8 /* File.swift */; };
 		D833BD9D20B942BD003E7BC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D833BD9C20B942BD003E7BC6 /* AppDelegate.swift */; };
 		D833BD9F20B942BD003E7BC6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D833BD9E20B942BD003E7BC6 /* ViewController.swift */; };
 		D833BDA220B942BD003E7BC6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D833BDA020B942BD003E7BC6 /* Main.storyboard */; };
@@ -102,6 +105,9 @@
 		BFCAD278A98761B1F1390F3A /* Pods-Eazi iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eazi iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eazi iOS/Pods-Eazi iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		D831116A20E37E7E009F62C8 /* VPMOTPView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPMOTPView.swift; sourceTree = "<group>"; };
 		D831116B20E37E7F009F62C8 /* VPMOTPTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPMOTPTextField.swift; sourceTree = "<group>"; };
+		D831117020E5017D009F62C8 /* CustomChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomChatCell.swift; sourceTree = "<group>"; };
+		D831117120E5017D009F62C8 /* CustomChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomChatCell.xib; sourceTree = "<group>"; };
+		D831117420E508D3009F62C8 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		D833BD9920B942BD003E7BC6 /* Eazi iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eazi iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D833BD9C20B942BD003E7BC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D833BD9E20B942BD003E7BC6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -298,6 +304,8 @@
 				D8FA8D5420BE867900BE0806 /* Groups.xib */,
 				D8DD765520D1A5AC00D56CDE /* ProfilePage.swift */,
 				D8A8D92D20E2224200D60A97 /* ChatViewController.swift */,
+				D831117020E5017D009F62C8 /* CustomChatCell.swift */,
+				D831117120E5017D009F62C8 /* CustomChatCell.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -393,6 +401,7 @@
 				D8A8D8E520E151BB00D60A97 /* DemoConversation.swift */,
 				D8A8D8DD20E13F6500D60A97 /* ChatBubbleData.swift */,
 				D8A8D93220E23D2300D60A97 /* Messages.swift */,
+				D831117420E508D3009F62C8 /* File.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -534,6 +543,7 @@
 			files = (
 				D8A8D8FA20E1560200D60A97 /* jsq_messages_sample.m4a in Resources */,
 				D833BDA720B942C1003E7BC6 /* LaunchScreen.storyboard in Resources */,
+				D831117320E5017D009F62C8 /* CustomChatCell.xib in Resources */,
 				D8A8D94920E29C6F00D60A97 /* README.md in Resources */,
 				D8FA8D5620BE867900BE0806 /* Groups.xib in Resources */,
 				D8FA8D5220BE866900BE0806 /* Favourite.xib in Resources */,
@@ -645,6 +655,7 @@
 				D8FA8D4820BE7DC700BE0806 /* CAPSPageMenu.swift in Sources */,
 				D833BDE520B96925003E7BC6 /* FSPageViewLayout.swift in Sources */,
 				D833BE0A20B96F4B003E7BC6 /* CircleThumbInner.swift in Sources */,
+				D831117520E508D3009F62C8 /* File.swift in Sources */,
 				D8A8D8DE20E13F6500D60A97 /* ChatBubbleData.swift in Sources */,
 				D8A8D92E20E2224200D60A97 /* ChatViewController.swift in Sources */,
 				D833BD9F20B942BD003E7BC6 /* ViewController.swift in Sources */,
@@ -677,6 +688,7 @@
 				D8A8D93C20E298D900D60A97 /* Validations.swift in Sources */,
 				D8A8D8DB20E13EF200D60A97 /* ChatBubble.swift in Sources */,
 				D833BE1D20B9AF26003E7BC6 /* FlowingMenuTransitionManager.swift in Sources */,
+				D831117220E5017D009F62C8 /* CustomChatCell.swift in Sources */,
 				D833BE0920B96F4B003E7BC6 /* Circle.swift in Sources */,
 				D833BDF220B96C18003E7BC6 /* AppConstants.swift in Sources */,
 				D8FA8D3F20BE7B9700BE0806 /* Contacts.swift in Sources */,

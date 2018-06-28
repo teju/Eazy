@@ -14,6 +14,7 @@ class SqliteDataBase {
     static let instance:SqliteDataBase = SqliteDataBase()
     private let db: Connection?
     private let message = Table("Messages")
+    private let users = Table("Users")
 
     //Location
     private let id = Expression<Int64>("id")
@@ -24,13 +25,15 @@ class SqliteDataBase {
     private let isMine = Expression<String>("isMine")
     var requestUTCDate = ""
 
-   
+    private let userid = Expression<Int64>("userid")
+    private let userPhNo = Expression<String?>("userPhNo")
+    private let me = Expression<String>("me")
+
     private init() {
         let path = NSSearchPathForDirectoriesInDomains(
             .documentDirectory, .userDomainMask, true
             ).first!
         print (" SqliteDataBase path \(path)")
-
         do {
             db = try Connection("\(path)/eazy.sqlite3")
         } catch {
@@ -53,6 +56,12 @@ class SqliteDataBase {
                 table.column(DateTimev)
                 table.column(isMine)
             })
+            try db!.run(users.create(ifNotExists: true) { table in
+                table.column(userid, primaryKey: true)
+                table.column(userPhNo,unique: true)
+                table.column(me)
+    
+            })
         } catch {
             print("SqliteDataBase Unable to create table\(error)")
         }
@@ -68,6 +77,20 @@ class SqliteDataBase {
             return id
         } catch {
             print(" SqliteDataBase addLocation Insert failed \(error)")
+            return -1
+        }
+    }
+    
+    func addusers(cuserPh: String) -> Int64? {
+        print("SqliteDataBase addusers \(cuserPh) ")
+        let user_name = UserDefaults.standard.string(forKey: AppConstants.userDefaults.user_data.rawValue)
+        do {
+            let insert = users.insert(userPhNo <- cuserPh, me <- user_name!+"@eazi.ai")
+            let id = try db!.run(insert)
+            print("SqliteDataBase addusers \(id)")
+            return id
+        } catch {
+            print(" SqliteDataBase addusers Insert failed \(error)")
             return -1
         }
     }
@@ -96,6 +119,26 @@ class SqliteDataBase {
             print("SqliteDataBase Select failed")
         }
         return mesages
+    }
+    func getUsers() -> [Users] {
+        var users = [Users]()
+        var user_name = UserDefaults.standard.string(forKey: AppConstants.userDefaults.user_data.rawValue)
+        if(!(user_name?.contains("@eazi.ai"))!) {
+            user_name = user_name!+"@eazi.ai"
+        }
+        let whereClause = " me = '"+user_name!+"'"
+        let query = " Select * from Users where "+whereClause
+        print("SqliteDataBase query \(query)")
+        do {
+            for msg in try db!.prepare(query)   {
+                print("getMessages \(msg[1]) \(user_name) ")
+                users.append(Users(userPh: msg[1] as! String, me: user_name!))
+            }
+        
+        } catch {
+            print("SqliteDataBase Select failed")
+        }
+        return users
     }
 //    func getMessages(user : String) -> [Messages] {
 //        var mesages = [Messages]()

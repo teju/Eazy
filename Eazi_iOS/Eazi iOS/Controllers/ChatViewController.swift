@@ -18,7 +18,6 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var messages : [Messages]?
     var to_user : String?
     var userN : String?
-    var objects  = [CNContact]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,51 +29,37 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         textfield.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
         loadList()
-        
-        
+    
         statusView.layer.cornerRadius      = statusView.bounds.width / 2
     }
     
     @objc func loadList(){
-        let store = Utils.getContacts()
-        objects = Utils.retrieveContactsWithStore(store: store)
-        if(userN != nil) {
-            username.text = userN
-        } else {
-            for index in 0 ... objects.count - 1 {
-                let contact = self.objects[index]
-                let actualNumber = contact.phoneNumbers.first?.value as? CNPhoneNumber
-
-                var string = actualNumber?.stringValue
-                string = string?.replacingOccurrences(of: " ", with: "")
-
-                if to_user!.range(of:string!) != nil {
-                    print("exists")
-                    let fullName = CNContactFormatter.string(from: contact, style: .fullName) ?? "No Name"
-                    username.text = fullName
-                    print("actualNumber123 \(string) to_user \(to_user)")
-
-                    break
-                } else {
-                    username.text = to_user
-                }
-            }
+       
+        if(!(to_user?.starts(with: "91"))!) {
+            to_user = "91"+to_user!
         }
+        to_user = to_user?.replacingOccurrences(of: " ", with: "")
         
-            if(!(to_user?.starts(with: "91"))!) {
-                to_user = "91"+to_user!
-            }
-            to_user = to_user?.replacingOccurrences(of: " ", with: "")
-            if(!(to_user?.contains("@eazi.ai"))!) {
-                to_user = to_user!+"@eazi.ai"
-            }
-        
-        
+
+        if(!(to_user?.contains("@eazi.ai"))!) {
+            to_user = to_user!+"@eazi.ai"
+        }
+    
         messages = SqliteDataBase.instance.getMessages(user: to_user!)
         if((messages?.count)! > 8 ){
             let lastRow: Int = self.tableview.numberOfRows(inSection: 0) - 1
             let indexPath = IndexPath(row: lastRow, section: 0);
             self.tableview.scrollToRow(at: indexPath, at: .top, animated: false)
+        }
+        if(userN != nil) {
+            username.text = userN
+        } else {
+            let user_name = Utils.getContactName(to_user: to_user!)
+            if(user_name.count > 0) {
+                username.text = user_name
+            } else {
+                username.text = to_user?.replacingOccurrences(of: "@eazi.ai", with: "")
+            }
         }
         //load data here
         self.tableview.reloadData()

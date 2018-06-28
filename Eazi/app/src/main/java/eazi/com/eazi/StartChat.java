@@ -116,11 +116,8 @@ public class StartChat extends AppCompatActivity implements OnClickListener {
         }
     }
 
-
-
     public void sendTextMessage(View v) {
         String message = msg_edittext.getEditableText().toString();
-
         if (!message.equalsIgnoreCase("")) {
             database.putMessages(database,CommonMethods.getSharedPrefValue(this,Constants.user_name)
                     ,user1,message,CommonMethods.getDate(),"true");

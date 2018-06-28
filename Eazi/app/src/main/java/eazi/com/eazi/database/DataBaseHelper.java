@@ -13,9 +13,6 @@ import java.util.List;
 import eazi.com.eazi.utils.CommonMethods;
 import eazi.com.eazi.utils.Constants;
 
-/**
- * Created by tejaswini on 04/04/18.
- */
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 

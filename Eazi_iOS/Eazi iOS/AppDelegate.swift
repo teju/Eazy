@@ -431,13 +431,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
     func xmppStream(_ sender: XMPPStream!, didReceive message: XMPPMessage!) {
         
         let from_user = (message.attribute(forName: "from")?.stringValue!)?.components(separatedBy: "/")
-        
-        
-        
+    
         let insert = SqliteDataBase.instance.addMessage(cmessage: Utils.htmlToString(mstring: (message.forName("body")?.xmlString)!), cTo_User: (message.attribute(forName: "to")?.stringValue!)!, cFrom_User: from_user![0], cDateTimev: Utils.getCurrentDate(), cisMine: "false")
         
-        print("SqliteDataBase didReceive addMessage \(from_user![0])")
-        
+        let user_insert = SqliteDataBase.instance.addusers(cuserPh: from_user![0])
+        print("SqliteDataBase didReceive addMessage \(from_user![0]) user_insert \(user_insert)")
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
         
         Utils.setupNotificationReminder(to_user: from_user![0])
@@ -448,17 +446,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
     
     func xmppStream(_ sender: XMPPStream!, didSend message: XMPPMessage!) {
         let from_user = (message.attribute(forName: "to")?.stringValue!)?.components(separatedBy: "/")
-    
         let user_name = UserDefaults.standard.string(forKey: AppConstants.userDefaults.user_data.rawValue)
-    
         let insert = SqliteDataBase.instance.addMessage(cmessage: Utils.htmlToString(mstring: (message.forName("body")?.xmlString)!), cTo_User: user_name!+"@eazi.ai", cFrom_User:from_user![0] , cDateTimev: Utils.getCurrentDate(), cisMine: "true")
-        
-        print(" ve addMessage \(user_name) to \(from_user)")
-        
+        let user_insert = SqliteDataBase.instance.addusers(cuserPh: from_user![0])
+        print("SqliteDataBase didReceive addMessage \(from_user![0]) user_insert \(user_insert)")
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
-        
-        
-        
     }
     
     func xmppRoster(_ sender: XMPPRoster!, didReceiveRosterItem item: DDXMLElement!) {
