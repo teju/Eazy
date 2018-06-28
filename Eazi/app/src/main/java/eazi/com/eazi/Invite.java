@@ -107,9 +107,8 @@ public class Invite extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         doBindService();
+        setupViewPager(viewPager);
     }
-
-
 
     void doBindService() {
 

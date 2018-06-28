@@ -10,6 +10,9 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import eazi.com.eazi.utils.CommonMethods;
+import eazi.com.eazi.utils.Constants;
+
 /**
  * Created by tejaswini on 04/04/18.
  */
@@ -21,7 +24,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public String Messages =" CREATE TABLE `Messages` (Id INTEGER PRIMARY KEY AUTOINCREMENT, "+
             "From_User TEXT, To_User TEXT, Message_Text TEXT,Date TEXT,isMine TEXT); ";
     public String Users =" CREATE TABLE `Users` (Id INTEGER PRIMARY KEY AUTOINCREMENT, "+
-            "Name TEXT, PhoneNumber TEXT unique); ";
+            "PhoneNumber TEXT unique, Me TEXT); ";
 
     private static final String DELETE_Messages = "DROP TABLE IF EXISTS Messages" ;
     private static final String DELETE_Users = "DROP TABLE IF EXISTS Users" ;
@@ -62,25 +65,28 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean putUSers(DataBaseHelper dbh,String From_NodeID,
-                               String To_Node_ID, String Message_Text,String Date , String Time){
+    public boolean putUsers(DataBaseHelper dbh,String PhoneNumber){
+        if(!PhoneNumber.contains("@eazi.ai")) {
+            PhoneNumber = PhoneNumber+"@eazi.ai";
+        }
         SQLiteDatabase sq=dbh.getWritableDatabase();
-        System.out.println("DataBaseHelper123 To_Node_ID " + To_Node_ID);
+        System.out.println("DataBaseHelper123 To_Node_ID " + PhoneNumber);
+        String Me = CommonMethods.getSharedPrefValue(context, Constants.user_name);
 
         ContentValues cv = new ContentValues();
-        cv.put("From_User", From_NodeID);
-        cv.put("To_User", To_Node_ID);
-        cv.put("Message_Text", Message_Text);
-        cv.put("Date", Date);
-        cv.put("isMine", Time);
-        sq.insert("Messages", null, cv);
+        cv.put("PhoneNumber", PhoneNumber);
+        cv.put("Me", Me);
+        long insert = sq.insert("Users", null, cv);
+        System.out.println("DataBaseHelper123 putUsers " + insert);
+
         return true;
 
     }
 
     public List<eazi.com.eazi.database.Messages> getMessages(String user) {
+        String from = CommonMethods.getSharedPrefValue(context, Constants.user_name);
         List<eazi.com.eazi.database.Messages> dataListList = new ArrayList<eazi.com.eazi.database.Messages>();
-        String selectQuery = "SELECT * FROM Messages Where To_User = '"+user+"'" ;
+        String selectQuery = "SELECT * FROM Messages Where To_User = '"+user+"' AND From_User = '"+from+"'" ;
 
         SQLiteDatabase db = this.getWritableDatabase();
         System.out.println("DataBaseHelper123 getDateRate " + selectQuery);
@@ -97,6 +103,29 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 msg.setDate(cursor.getString(4));
                 msg.setISMine(cursor.getString(5));
                 System.out.println("DataBaseHelper123 getDateRate " + cursor.getString(2));
+                dataListList.add(msg);
+            } while (cursor.moveToNext());
+        }
+        return dataListList;
+    }
+
+    public List<Users> getUsers() {
+        String from = CommonMethods.getSharedPrefValue(context, Constants.user_name);
+
+        List<Users> dataListList = new ArrayList<Users>();
+        String selectQuery = "SELECT * FROM Users Where Me = '"+from+"'" ;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        System.out.println("DataBaseHelper123 getUsers " + selectQuery);
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Users msg = new Users();
+                msg.setName(cursor.getString(0));
+                msg.setPhoneNumber(cursor.getString(1));
+                System.out.println("DataBaseHelper123 getUsers " + cursor.getString(2));
                 dataListList.add(msg);
             } while (cursor.moveToNext());
         }

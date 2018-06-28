@@ -73,6 +73,26 @@ public class CommonMethods {
         editor.clear();
         editor.commit();
     }
+
+    public static String getcontactName(Context context,String user){
+        String user_name = "";
+
+        List<Contact> contactList = CommonMethods.getContact(context);
+        for (int i = 0;i<contactList.size();i++){
+            if(contactList.get(i).getPhoneNo() != null) {
+
+                String contct = contactList.get(i).getPhoneNo().replaceAll("\\s", "");
+                System.out.println("USERLIST user1 " + user + " " + contct);
+
+                if (user.contains(contct)) {
+                    user_name = contactList.get(i).getName();
+
+                    break;
+                }
+            }
+        }
+        return user_name;
+    }
     public static List<Contact> getContact(Context context) {
         List<Contact> contactList = new ArrayList<>();
         ContentResolver contentResolver = context.getContentResolver();

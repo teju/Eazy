@@ -295,6 +295,7 @@ public class MyXMPP {
                 DataBaseHelper database = new DataBaseHelper(context);
                 database.putMessages(database, CommonMethods.getSharedPrefValue(context, Constants.user_name)
                         ,receiver,chatMessage.getBody(),CommonMethods.getDate(),"false");
+                database.putUsers(database,receiver);
                 //ChatAdapter chatAdapter = new ChatAdapter(context, receiver);
                 if(StartChat.chatAdapter != null) {
                     StartChat.chatAdapter.add(context, receiver);

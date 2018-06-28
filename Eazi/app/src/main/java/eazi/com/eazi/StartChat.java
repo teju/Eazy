@@ -90,23 +90,8 @@ public class StartChat extends AppCompatActivity implements OnClickListener {
             user1 = user1.replaceAll("\\s","");
         }
 
-        List<Contact> contactList = CommonMethods.getContact(this);
         if(user_name == null) {
-            for (int i = 0;i<contactList.size();i++){
-                if(contactList.get(i).getPhoneNo() != null) {
-
-                    String contct = contactList.get(i).getPhoneNo().replaceAll("\\s", "");
-                    System.out.println("USERLIST user1 " + user1 + " " + contct);
-
-                    if (user1.contains(contct)) {
-                        user_name = contactList.get(i).getName();
-
-                        break;
-                    } else {
-                        user_name = "";
-                    }
-                }
-            }
+            user_name = CommonMethods.getcontactName(this,user1);
         }
 
         database = new DataBaseHelper(this);
@@ -139,8 +124,8 @@ public class StartChat extends AppCompatActivity implements OnClickListener {
         if (!message.equalsIgnoreCase("")) {
             database.putMessages(database,CommonMethods.getSharedPrefValue(this,Constants.user_name)
                     ,user1,message,CommonMethods.getDate(),"true");
+            database.putUsers(database,user1);
             msg_edittext.setText("");
-
             chatAdapter.add(this,user1);
             chatAdapter.notifyDataSetChanged();
             Invite activity = new Invite();
