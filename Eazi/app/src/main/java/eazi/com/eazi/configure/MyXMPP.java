@@ -28,12 +28,20 @@ import org.jivesoftware.smack.chat.ChatMessageListener;
 import org.jivesoftware.smack.chat2.IncomingChatMessageListener;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Presence;
+import org.jivesoftware.smack.provider.ProviderManager;
 import org.jivesoftware.smack.roster.Roster;
 import org.jivesoftware.smack.tcp.XMPPTCPConnection;
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration;
+import org.jivesoftware.smackx.search.ReportedData;
+import org.jivesoftware.smackx.search.UserSearch;
+import org.jivesoftware.smackx.search.UserSearchManager;
+import org.jivesoftware.smackx.xdata.Form;
+import org.jivesoftware.smackx.xdata.FormField;
+import org.jivesoftware.smackx.xdata.packet.DataForm;
 import org.jxmpp.jid.BareJid;
 import org.jxmpp.jid.DomainBareJid;
 import org.jxmpp.jid.EntityBareJid;
+import org.jxmpp.jid.Jid;
 import org.jxmpp.jid.impl.JidCreate;
 import org.jxmpp.stringprep.XmppStringprepException;
 
@@ -42,6 +50,8 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 import javax.net.ssl.HostnameVerifier;
@@ -85,10 +95,9 @@ public class MyXMPP {
     public static MyXMPP getInstance(MyService context, String server,
                                      String user, String pass) {
 
-        if (instance == null) {
             instance = new MyXMPP(context, server, user, pass);
             instanceCreated = true;
-        }
+
         return instance;
 
     }
@@ -140,6 +149,8 @@ public class MyXMPP {
                     System.out.println("ChatConfig connected");
 
                 }
+                System.out.println("ChatConfig username  "+loginUser);
+
                 HostnameVerifier verifier = new HostnameVerifier() {
                     @Override
                     public boolean verify(String hostname, SSLSession session) {
@@ -165,8 +176,10 @@ public class MyXMPP {
                 try {
                     connection.connect();
                     login();
+
                     System.out.println("ChatConfig connected");
-                   // CommonMethods.dialog(context,false);
+
+                    // CommonMethods.dialog(context,false);
                     Presence presence = new Presence(Presence.Type.available);
                     presence.setStatus("Online, Programmatically!");
                     presence.setPriority(24);
@@ -178,6 +191,7 @@ public class MyXMPP {
                     if (connection.isAuthenticated() && connection.isConnected()) {
                         //now send message and receive message code here
                         System.out.println("ChatConfig receiver " + "run: auth done and connected successfully");
+                       // getAllUser();
 
                         org.jivesoftware.smack.chat2.ChatManager chatManager = org.jivesoftware.smack.chat2.ChatManager.getInstanceFor(connection);
                         chatManager.addListener(new IncomingChatMessageListener() {
@@ -309,6 +323,43 @@ public class MyXMPP {
         });
     }
 
+    public void getAllUser(){
+        Jid jid = null;
+        try {
+            jid = JidCreate.from("919964062237@eazi.ai");
+            String t1string = jid.toString();
+            System.out.println("ChatConfig  getAllUser Jid converted to string:"+ t1string);
+
+        } catch (XmppStringprepException e) {
+            System.out.println("ChatConfig  getAllUser Jid converted XmppStringprepException:"+ e.toString());
+
+            e.printStackTrace();
+        }
+
+
+        DomainBareJid DBJid = jid.asDomainBareJid();
+        System.out.println("ChatConfig  getAllUser JDomainBareJid:"+ DBJid);
+
+        UserSearchManager search = new UserSearchManager(connection);
+
+        Form searchForm = null;
+
+        try {
+            searchForm = search.getSearchForm(DBJid);
+            System.out.println("ChatConfig  getAllUser after getSearchForm "+searchForm);
+
+        }catch (SmackException.NoResponseException | SmackException.NotConnectedException | InterruptedException Ie) {
+            System.out.println("ChatConfig  getAllUser aException at getSearchForm "+Ie.toString());
+
+            Ie.printStackTrace();
+        } catch (XMPPException.XMPPErrorException e) {
+            System.out.println("ChatConfig  getAllUser XMPPErrorException "+e.toString());
+
+            e.printStackTrace();
+        }
+
+    }
+
     private class MMessageListener implements ChatMessageListener {
 
         public MMessageListener(Context contxt) {
@@ -339,6 +390,7 @@ public class MyXMPP {
                 }
             });
         }
+
 
     }
 }

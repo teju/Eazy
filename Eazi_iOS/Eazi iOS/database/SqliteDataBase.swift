@@ -50,7 +50,7 @@ class SqliteDataBase {
                 table.column(messages)
                 table.column(To_User)
                 table.column(From_User)
-                table.column(DateTimev,unique: true)
+                table.column(DateTimev)
                 table.column(isMine)
             })
         } catch {
@@ -74,8 +74,11 @@ class SqliteDataBase {
     
     func getMessages(user : String) -> [Messages] {
        var mesages = [Messages]()
-        let user_name = UserDefaults.standard.string(forKey: AppConstants.userDefaults.user_data.rawValue)
-        let to_user = " And To_User = '"+user_name!+"@eazi.ai'"
+        var user_name = UserDefaults.standard.string(forKey: AppConstants.userDefaults.user_data.rawValue)
+        if(!(user_name?.contains("@eazi.ai"))!) {
+            user_name = user_name!+"@eazi.ai"
+        }
+        let to_user = " And To_User = '"+user_name!+"'"
         let whereClause = " From_User = '"+user+"' "+to_user
         let query = " Select * from Messages where "+whereClause
         print("query \(query)")

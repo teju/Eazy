@@ -20,8 +20,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private final Context context;
     public String Messages =" CREATE TABLE `Messages` (Id INTEGER PRIMARY KEY AUTOINCREMENT, "+
             "From_User TEXT, To_User TEXT, Message_Text TEXT,Date TEXT,isMine TEXT); ";
+    public String Users =" CREATE TABLE `Users` (Id INTEGER PRIMARY KEY AUTOINCREMENT, "+
+            "Name TEXT, PhoneNumber TEXT unique); ";
 
     private static final String DELETE_Messages = "DROP TABLE IF EXISTS Messages" ;
+    private static final String DELETE_Users = "DROP TABLE IF EXISTS Users" ;
 
     public DataBaseHelper(Context context) {
         super(context, "eazy_db",null, database_version);
@@ -32,17 +35,35 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(Messages);
+        db.execSQL(Users);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(DELETE_Messages);
+        db.execSQL(DELETE_Users);
         onCreate(db);
     }
 
 
     public boolean putMessages(DataBaseHelper dbh,String From_NodeID,
                                      String To_Node_ID, String Message_Text,String Date , String Time){
+        SQLiteDatabase sq=dbh.getWritableDatabase();
+        System.out.println("DataBaseHelper123 To_Node_ID " + To_Node_ID);
+
+        ContentValues cv = new ContentValues();
+        cv.put("From_User", From_NodeID);
+        cv.put("To_User", To_Node_ID);
+        cv.put("Message_Text", Message_Text);
+        cv.put("Date", Date);
+        cv.put("isMine", Time);
+        sq.insert("Messages", null, cv);
+        return true;
+
+    }
+
+    public boolean putUSers(DataBaseHelper dbh,String From_NodeID,
+                               String To_Node_ID, String Message_Text,String Date , String Time){
         SQLiteDatabase sq=dbh.getWritableDatabase();
         System.out.println("DataBaseHelper123 To_Node_ID " + To_Node_ID);
 

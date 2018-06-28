@@ -132,6 +132,24 @@ class Invite: UIViewController,FlowingMenuDelegate {
         self.view.addSubview(pageMenu!.view)
     }
     
+    @IBAction func logout(_ sender: Any) {
+        Utils.showAlert(message: AppConstants.AlertMessage.logoutMessage.rawValue, viewController: self, yesCallback: {
+            (action) in
+            UserDefaults.standard.setValue(false, forKey: AppConstants.userDefaults.isLoggedIn.rawValue)
+            let defaults = UserDefaults.standard
+            defaults.removeObject(forKey: AppConstants.userDefaults.user_data.rawValue)
+            
+            UserDefaults.standard.set("", forKey: AppConstants.userDefaults.recentAlertDate.rawValue)
+            defaults.synchronize()
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: AppConstants.Storyboards.Main.rawValue, bundle: nil)
+            let login = mainStoryboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+            self.navigationController?.pushViewController(login, animated: true)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.disconnect()
+        }, noCallback: { (action) in
+        })
+        
+    }
     @IBAction func back(_ sender: Any) {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: AppConstants.Storyboards.Main.rawValue, bundle: nil)
         let circleMenu = mainStoryboard.instantiateViewController(withIdentifier: "CircleMenu") as! CircleMenu

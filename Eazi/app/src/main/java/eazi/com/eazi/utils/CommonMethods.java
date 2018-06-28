@@ -67,7 +67,12 @@ public class CommonMethods {
         return pref.getString(key, "");
 
     }
-
+    public static void clearSharedPrefValue(Context context){
+        SharedPreferences pref = context.getSharedPreferences(Constants.user_credentials, 0); // 0 - for private mode
+        SharedPreferences.Editor editor = pref.edit();
+        editor.clear();
+        editor.commit();
+    }
     public static List<Contact> getContact(Context context) {
         List<Contact> contactList = new ArrayList<>();
         ContentResolver contentResolver = context.getContentResolver();

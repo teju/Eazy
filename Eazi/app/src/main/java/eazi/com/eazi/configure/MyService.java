@@ -33,22 +33,30 @@ public class MyService extends Service {
         xmpp = MyXMPP.getInstance(MyService.this, getString(R.string.server),
                 CommonMethods.getSharedPrefValue(this, Constants.user_name),
                 CommonMethods.getSharedPrefValue(this, Constants.user_pass));
+        System.out.println("ChatConfig MyService12345 onCreate");
     }
 
     @Override
     public int onStartCommand(final Intent intent, final int flags,
                               final int startId) {
+        System.out.println("ChatConfig MyService12345 onStartCommand");
+
         return Service.START_NOT_STICKY;
+
     }
 
     @Override
     public boolean onUnbind(final Intent intent) {
+        System.out.println("ChatConfig MyService12345 onUnbind");
+
         return super.onUnbind(intent);
     }
 
     @Override
     public void onDestroy() {
+        System.out.println("ChatConfig MyService12345 onDestroy");
         super.onDestroy();
         xmpp.connection.disconnect();
+        MyXMPP.instance = null;
     }
 }

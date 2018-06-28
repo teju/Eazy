@@ -151,23 +151,18 @@ class RegisterPhoneNumber: UIViewController {
             let username = data!["username"] as! String
             let userpass = data!["password"] as! String
 
-            print("userNAme \(UserDefaults.standard.bool(forKey: AppConstants.userDefaults.isLoggedIn.rawValue))")
             UserDefaults.standard.setValue(username, forKey: AppConstants.userDefaults.user_data.rawValue)
             UserDefaults.standard.setValue(userpass, forKey: AppConstants.userDefaults.user_pass.rawValue)
-            if(UserDefaults.standard.bool(forKey: AppConstants.userDefaults.isLoggedIn.rawValue)) {
-                let mainStoryboard: UIStoryboard = UIStoryboard(name: AppConstants.Storyboards.Main.rawValue, bundle: nil)
-                let circleMenu = mainStoryboard.instantiateViewController(withIdentifier: "CircleMenu") as! CircleMenu
-                self.navigationController?.pushViewController(circleMenu, animated: true)
-            } else {
-                let mainStoryboard: UIStoryboard = UIStoryboard(name: AppConstants.Storyboards.Main.rawValue, bundle: nil)
-                let editPhoneNumber = mainStoryboard.instantiateViewController(withIdentifier: "EditPhoneNumber") as! EditPhoneNumber
-                editPhoneNumber.phoneNumber = self.phone_number.text
-                self.navigationController?.pushViewController(editPhoneNumber, animated: true)
-            }
             
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             
             if appDelegate.connect() {
+                
+                    let mainStoryboard: UIStoryboard = UIStoryboard(name: AppConstants.Storyboards.Main.rawValue, bundle: nil)
+                    let editPhoneNumber = mainStoryboard.instantiateViewController(withIdentifier: "EditPhoneNumber") as! EditPhoneNumber
+                    editPhoneNumber.phoneNumber = self.phone_number.text
+                    self.navigationController?.pushViewController(editPhoneNumber, animated: true)
+                
                 
             }
         }

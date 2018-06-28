@@ -20,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 
 
@@ -82,21 +83,44 @@ public class Invite extends AppCompatActivity {
             mDrawer.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL);
             mDrawer.setMenuSize(width / 2 + 150);
             setupMenu();
-            doBindService();
+
+            Button logout = (Button)findViewById(R.id.logout);
+            logout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CommonMethods.clearSharedPrefValue(Invite.this);
+                    doUnbindService();
+
+                    Intent i = new Intent(Invite.this,MainActivity.class);
+                    startActivity(i);
+                    finish();
+
+                }
+            });
         } catch (Exception e) {
             System.out.println("Exception1234 " + e.toString());
 
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        doBindService();
+    }
+
+
 
     void doBindService() {
+
         bindService(new Intent(this, MyService.class), mConnection,
                 Context.BIND_AUTO_CREATE);
     }
 
     void doUnbindService() {
         if (mConnection != null) {
+            System.out.println("connection1232r43rd3we onDestroy");
+
             unbindService(mConnection);
         }
     }

@@ -93,11 +93,18 @@ public class StartChat extends AppCompatActivity implements OnClickListener {
         List<Contact> contactList = CommonMethods.getContact(this);
         if(user_name == null) {
             for (int i = 0;i<contactList.size();i++){
-                if(user1.contains(contactList.get(i).getPhoneNo())) {
-                    user_name = contactList.get(i).getName();
-                    System.out.println("USERLIST user1 "+user1+" "+contactList.get(i).getPhoneNo());
+                if(contactList.get(i).getPhoneNo() != null) {
 
-                    break;
+                    String contct = contactList.get(i).getPhoneNo().replaceAll("\\s", "");
+                    System.out.println("USERLIST user1 " + user1 + " " + contct);
+
+                    if (user1.contains(contct)) {
+                        user_name = contactList.get(i).getName();
+
+                        break;
+                    } else {
+                        user_name = "";
+                    }
                 }
             }
         }
@@ -117,7 +124,7 @@ public class StartChat extends AppCompatActivity implements OnClickListener {
         msgListView.setAdapter(chatAdapter);
 
 
-        if(user_name != null) {
+        if(user_name.length() > 0) {
             name.setText(user_name);
         } else if(user1 != null){
             name.setText(user1.replace("@eazi.ai",""));

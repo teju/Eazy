@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		824AAB252DC43A207656BB22 /* Pods_Eazi_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5811503ABA06C40BF880F622 /* Pods_Eazi_iOS.framework */; };
+		D831116C20E37E7F009F62C8 /* VPMOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D831116A20E37E7E009F62C8 /* VPMOTPView.swift */; };
+		D831116D20E37E7F009F62C8 /* VPMOTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D831116B20E37E7F009F62C8 /* VPMOTPTextField.swift */; };
 		D833BD9D20B942BD003E7BC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D833BD9C20B942BD003E7BC6 /* AppDelegate.swift */; };
 		D833BD9F20B942BD003E7BC6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D833BD9E20B942BD003E7BC6 /* ViewController.swift */; };
 		D833BDA220B942BD003E7BC6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D833BDA020B942BD003E7BC6 /* Main.storyboard */; };
@@ -98,6 +100,8 @@
 /* Begin PBXFileReference section */
 		5811503ABA06C40BF880F622 /* Pods_Eazi_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eazi_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFCAD278A98761B1F1390F3A /* Pods-Eazi iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eazi iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eazi iOS/Pods-Eazi iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		D831116A20E37E7E009F62C8 /* VPMOTPView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPMOTPView.swift; sourceTree = "<group>"; };
+		D831116B20E37E7F009F62C8 /* VPMOTPTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPMOTPTextField.swift; sourceTree = "<group>"; };
 		D833BD9920B942BD003E7BC6 /* Eazi iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eazi iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D833BD9C20B942BD003E7BC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D833BD9E20B942BD003E7BC6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -328,6 +332,8 @@
 		D833BDED20B96B14003E7BC6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D831116B20E37E7F009F62C8 /* VPMOTPTextField.swift */,
+				D831116A20E37E7E009F62C8 /* VPMOTPView.swift */,
 				D8A8D8DA20E13EF200D60A97 /* ChatBubble.swift */,
 				D833BDEE20B96B2B003E7BC6 /* TableViewCell.swift */,
 				D888D81220BA87DC00B50D2F /* UserChatCellView.swift */,
@@ -658,6 +664,7 @@
 				D8DD765620D1A5AC00D56CDE /* ProfilePage.swift in Sources */,
 				D833BE1820B9AF26003E7BC6 /* FlowingMenuDelegate.swift in Sources */,
 				D833BDF420B96D52003E7BC6 /* RegisterPhoneNumber.swift in Sources */,
+				D831116D20E37E7F009F62C8 /* VPMOTPTextField.swift in Sources */,
 				D8A8D94720E29C6F00D60A97 /* ToastCenter.swift in Sources */,
 				D833BDE620B96925003E7BC6 /* FSPagerCollectionView.swift in Sources */,
 				D8A8D94A20E29C6F00D60A97 /* ToastWindow.swift in Sources */,
@@ -685,6 +692,7 @@
 				D833BE1920B9AF26003E7BC6 /* FlowingMenuTransitionManager+UIViewControllerTransitioningDelegate.swift in Sources */,
 				D8FA8D4A20BE7DC700BE0806 /* CAPSPageMenu+UIGestureRecognizerDelegate.swift in Sources */,
 				D8FA8D5120BE866900BE0806 /* Favourite.swift in Sources */,
+				D831116C20E37E7F009F62C8 /* VPMOTPView.swift in Sources */,
 				D833BE1B20B9AF26003E7BC6 /* FlowingMenuTransitionManager+UIGestureRecognizer.swift in Sources */,
 				D833BE0520B96F4B003E7BC6 /* CircleOverlayView.swift in Sources */,
 				D8A8D8E620E151BB00D60A97 /* DemoConversation.swift in Sources */,

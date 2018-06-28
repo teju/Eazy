@@ -56,9 +56,16 @@ class ViewController: UIViewController,FSPagerViewDataSource,FSPagerViewDelegate
     
     
     @IBAction func agree(_ sender: Any) {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: AppConstants.Storyboards.Main.rawValue, bundle: nil)
-        let language = mainStoryboard.instantiateViewController(withIdentifier: "LanguageViewController") as! LanguageViewController
-        self.navigationController?.pushViewController(language, animated: true)
+        if(!UserDefaults.standard.bool(forKey: AppConstants.userDefaults.isLoggedIn.rawValue)) {
+
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: AppConstants.Storyboards.Main.rawValue, bundle: nil)
+            let language = mainStoryboard.instantiateViewController(withIdentifier: "LanguageViewController") as! LanguageViewController
+            self.navigationController?.pushViewController(language, animated: true)
+        } else {
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: AppConstants.Storyboards.Main.rawValue, bundle: nil)
+            let invite = mainStoryboard.instantiateViewController(withIdentifier: "Invite") as! Invite
+            self.navigationController?.pushViewController(invite, animated: true)
+        }
         //self.xmppController?.sendMessage()
 
     }

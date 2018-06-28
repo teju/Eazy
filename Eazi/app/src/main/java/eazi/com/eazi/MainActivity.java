@@ -21,6 +21,9 @@ import com.squareup.picasso.Picasso;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import eazi.com.eazi.utils.CommonMethods;
+import eazi.com.eazi.utils.Constants;
+
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
 
     private ImageView pager_introduction;
@@ -45,12 +48,20 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         title = (TextView)findViewById(R.id.title);
         desc = (TextView)findViewById(R.id.desc);
         Button agree =(Button)findViewById(R.id.agree);
+        System.out.println(" CommonMethods "
+                +CommonMethods.getSharedPrefValue(MainActivity.this, Constants.user_verified));
         agree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this,LanguageSelection.class);
-                startActivity(i);
-                finish();
+                if(CommonMethods.getSharedPrefValue(MainActivity.this, Constants.user_verified).equals("false")
+                        || CommonMethods.isEmpty(CommonMethods.getSharedPrefValue(MainActivity.this,Constants.user_verified))) {
+                    Intent i = new Intent(MainActivity.this,LanguageSelection.class);
+                    startActivity(i);
+                    finish();
+                } else {
+                    Intent i = new Intent(MainActivity.this, Invite.class);
+                    startActivity(i);
+                }
             }
         });
         AnimationSet set = new AnimationSet(true);

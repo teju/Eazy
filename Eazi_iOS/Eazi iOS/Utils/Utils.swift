@@ -19,15 +19,15 @@ class Utils {
     static var cview : UIView?
     private static var hud:MBProgressHUD!
 
-    static func setupNotificationReminder() {
-        var title:String = "Your reminder text goes here"
+    static func setupNotificationReminder(to_user : String) {
+        var title:String = "New Message Arrived "
         
         let date = Date()
         
         // create a corresponding local notification
         let notification = UILocalNotification()
         
-        let dict:NSDictionary = ["ID" : "your ID goes here"]
+        let dict:NSDictionary = ["to_user" : to_user]
         notification.userInfo = dict as! [String : String]
         notification.alertBody = "\(title)"
         notification.alertAction = "Open"
@@ -36,7 +36,18 @@ class Utils {
         notification.soundName = UILocalNotificationDefaultSoundName
         UIApplication.shared.scheduleLocalNotification(notification)
     }
-    
+    class func showAlert(message:String, viewController:UIViewController, yesCallback:@escaping (_ action:UIAlertAction) -> Void, noCallback:@escaping (_ action:UIAlertAction) -> Void) {
+        
+        let alert = UIAlertController(title: AppConstants.alertTitle, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+            yesCallback(action)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: { (action) in
+            noCallback(action)
+        }))
+        
+        viewController.present(alert, animated: true, completion: nil)
+    }
     static func hexStringToUIColor (hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
@@ -93,7 +104,11 @@ class Utils {
             let fullName = CNContactFormatter.string(from: contact, style: .fullName) ?? "No Name"
 
         }
-        return objects
+        // sort by name given
+        let result = objects.sorted(by: {
+            (firt: CNContact, second: CNContact) -> Bool in firt.givenName < second.givenName
+        })
+        return result
     }
     
     static func htmlToString(mstring : String) -> String {

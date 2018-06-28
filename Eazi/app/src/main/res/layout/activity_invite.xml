@@ -24,7 +24,18 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" /> 
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:padding="10dp"
+                android:layout_gravity="right"
+                android:id="@+id/logout"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/logout"/>
+
+        </android.support.v7.widget.Toolbar> 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

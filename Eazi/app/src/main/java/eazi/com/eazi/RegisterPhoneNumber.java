@@ -296,14 +296,8 @@ public class RegisterPhoneNumber extends AppCompatActivity implements View.OnCli
             }
         } else {
             System.out.println("PHONEVERIFIED "+CommonMethods.getSharedPrefValue(this,Constants.user_verified));
-            if(CommonMethods.getSharedPrefValue(this,Constants.user_verified).equals("false")
-                    || CommonMethods.isEmpty(CommonMethods.getSharedPrefValue(this,Constants.user_verified))) {
                 Intent i = new Intent(RegisterPhoneNumber.this, PhoneVerification.class);
                 startActivity(i);
-            } else {
-                Intent i = new Intent(RegisterPhoneNumber.this, Invite.class);
-                startActivity(i);
-            }
 
         }
     }
