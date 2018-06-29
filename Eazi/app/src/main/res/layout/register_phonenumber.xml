@@ -65,43 +65,36 @@
         android:layout_marginRight="60dp"
         android:textColor="@color/white"
         android:text="Number"/>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
-        <LinearLayout
+        <EditText
             android:layout_width="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:inputType="number"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="14dp"
-            android:layout_height="wrap_content">
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:id="@+id/country_code"
-                android:textColor="@color/white"
-                android:textSize="14dp"/>
-            <View
-                android:layout_width="80dp"
-                android:layout_height="1dp"
-                android:background="@color/white"/>
-        </LinearLayout>
-
-
+            android:layout_marginTop="5dp"
+            android:textColorHint="@color/white"
+            android:id="@+id/country_code"
+            android:backgroundTint="@color/white"
+            android:textSize="16dp"
+            android:textColor="@color/white"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:hint="Enter your phone number"
             android:inputType="number"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/country_code"
             android:textColorHint="@color/white"
             android:id="@+id/phone_number"
             android:backgroundTint="@color/white"
             android:textSize="16dp"
             android:layout_marginRight="30dp"
             android:textColor="@color/white"/>
-    </LinearLayout>
+    </RelativeLayout>
 
     <Button
         android:layout_width="wrap_content"

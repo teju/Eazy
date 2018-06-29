@@ -14,6 +14,9 @@ class EditPhoneNumber: UIViewController {
     @IBOutlet weak var okButton: UIButton!
     @IBOutlet weak var changeButton: UIButton!
     var phoneNumber : String?
+    var mCode : String?
+
+    var countryPos : Int?
     override func viewDidLoad() {
         super.viewDidLoad()
         changeButton?.layer.cornerRadius = 15
@@ -31,8 +34,11 @@ class EditPhoneNumber: UIViewController {
     
     @IBAction func change(_ sender: Any) {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: AppConstants.Storyboards.Main.rawValue, bundle: nil)
-        let register_phone_number = mainStoryboard.instantiateViewController(withIdentifier: "RegisterPhoneNumber") as! RegisterPhoneNumber
-        self.navigationController?.pushViewController(register_phone_number, animated: true)
+        let editPhoneNumber = mainStoryboard.instantiateViewController(withIdentifier: "RegisterPhoneNumber") as! RegisterPhoneNumber
+        editPhoneNumber.phoneNumber = self.phone_number.text
+        editPhoneNumber.countryPos = self.countryPos
+        editPhoneNumber.mCode = self.mCode
+        self.navigationController?.pushViewController(editPhoneNumber, animated: true)
     }
     
     @IBAction func submit(_ sender: Any) {

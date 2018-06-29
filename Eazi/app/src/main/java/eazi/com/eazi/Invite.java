@@ -50,64 +50,68 @@ public class Invite extends AppCompatActivity {
     private FlowingDrawer mDrawer;
     private RelativeLayout main_layout;
     private List<Contact> contacts = new ArrayList<>();
+    private Button logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invite);
         try {
-
-            toolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-            main_layout = (RelativeLayout) findViewById(R.id.main_layout);
-            main_layout.setAlpha(1);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(Invite.this, RadialMenuActivity.class);
-                    startActivity(i);
-                }
-            });
-            viewPager = (ViewPager) findViewById(R.id.viewpager);
-            setupViewPager(viewPager);
-
-            tabLayout = (TabLayout) findViewById(R.id.tabs);
-            tabLayout.setupWithViewPager(viewPager);
-
-            DisplayMetrics displayMetrics = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-            int height = displayMetrics.heightPixels;
-            int width = displayMetrics.widthPixels;
-            mDrawer = (FlowingDrawer) findViewById(R.id.drawerlayout);
-            mDrawer.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL);
-            mDrawer.setMenuSize(width / 2 + 150);
-            setupMenu();
-
-            Button logout = (Button)findViewById(R.id.logout);
-            logout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    CommonMethods.clearSharedPrefValue(Invite.this);
-                    doUnbindService();
-
-                    Intent i = new Intent(Invite.this,MainActivity.class);
-                    startActivity(i);
-                    finish();
-
-                }
-            });
+            initUI();
         } catch (Exception e) {
             System.out.println("Exception1234 " + e.toString());
 
         }
     }
 
+    public void initUI(){
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        main_layout = (RelativeLayout) findViewById(R.id.main_layout);
+        main_layout.setAlpha(1);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Invite.this, RadialMenuActivity.class);
+                startActivity(i);
+            }
+        });
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        logout = (Button)findViewById(R.id.logout);
+
+    }
+    public void initData(){
+        setupViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+        mDrawer = (FlowingDrawer) findViewById(R.id.drawerlayout);
+        mDrawer.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL);
+        mDrawer.setMenuSize(width / 2 + 150);
+        setupMenu();
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonMethods.clearSharedPrefValue(Invite.this);
+                doUnbindService();
+                Intent i = new Intent(Invite.this,MainActivity.class);
+                startActivity(i);
+                finish();
+
+            }
+        });
+
+
+    }
     @Override
     protected void onResume() {
         super.onResume();
         doBindService();
-        setupViewPager(viewPager);
+        initData();
     }
 
     void doBindService() {

@@ -49,6 +49,7 @@ public class PhoneVerification extends AppCompatActivity implements View.OnClick
         switch (v.getId()){
             case R.id.edit:
                  i =new Intent(PhoneVerification.this,RegisterPhoneNumber.class);
+                 i.putExtra("phone_number",phone_number.getText().toString());
                 startActivity(i);
                 finish();
                 break;

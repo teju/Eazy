@@ -51,9 +51,7 @@ public class SmsVerification extends AppCompatActivity implements View.OnClickLi
         Intent i;
         switch (v.getId()){
             case R.id.resend_sms:
-                i =new Intent(SmsVerification.this,RegisterPhoneNumber.class);
-                startActivity(i);
-                finish();
+
                 break;
             case R.id.call:
                 i =new Intent(SmsVerification.this,Invite.class);

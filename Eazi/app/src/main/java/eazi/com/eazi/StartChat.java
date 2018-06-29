@@ -1,9 +1,5 @@
 package eazi.com.eazi;
 
-/**
- * Created by Khushvinders on 15-Nov-16.
- */
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,12 +12,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import eazi.com.eazi.adapters.ChatAdapter;
 import eazi.com.eazi.database.DataBaseHelper;
 import eazi.com.eazi.database.Messages;
-import eazi.com.eazi.model.Contact;
 import eazi.com.eazi.utils.CommonMethods;
 import eazi.com.eazi.utils.Constants;
 
@@ -43,9 +37,7 @@ public class StartChat extends AppCompatActivity implements OnClickListener {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_layout);
-
         onNewIntent(getIntent());
-
         initUI();
         initData();
     }
@@ -107,7 +99,6 @@ public class StartChat extends AppCompatActivity implements OnClickListener {
 
         chatAdapter = new ChatAdapter(this,user1);
         msgListView.setAdapter(chatAdapter);
-
 
         if(user_name.length() > 0) {
             name.setText(user_name);

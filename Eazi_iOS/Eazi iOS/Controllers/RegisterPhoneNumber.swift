@@ -27,6 +27,11 @@ class RegisterPhoneNumber: UIViewController {
             self.chooseDropDown
         ]
     }()
+    var phoneNumber : String?
+    var mCode : String?
+    
+    var countryPos : Int?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         Utils.addLine(button: phone_number,color:UIColor.white.cgColor)
@@ -39,6 +44,12 @@ class RegisterPhoneNumber: UIViewController {
        
         dropDowns.forEach { $0.dismissMode = .onTap }
         dropDowns.forEach { $0.direction = .any }
+        if(mCode != nil) {
+            self.selectCountryCode?.setTitle(mCode, for: .normal)
+        }
+        if(phoneNumber != nil) {
+            self.phone_number.text = phoneNumber
+        }
     }
     
     @IBAction func chooseCountry(_ sender: Any) {
@@ -47,30 +58,16 @@ class RegisterPhoneNumber: UIViewController {
             //self?.overview?.view.alpha = CGFloat(1.0)
             self?.selectCountry?.setTitle(item, for: .normal)
             self?.selectCountryCode?.setTitle(self?.country_code[index], for: .normal)
-
-        }
-        self.chooseDropDown.show()
-
-    }
-    
-    @IBAction func chooseCountryCode(_ sender: Any) {
-        self.chooseDropDown.dataSource = self.country_code
-        self.chooseDropDown.selectionAction = { [weak self] (index, item) in
-            //self?.overview?.view.alpha = CGFloat(1.0)
-            self?.selectCountryCode?.setTitle(item, for: .normal)
-            self?.selectCountry?.setTitle(self?.country_name[index], for: .normal)
-
+            self?.countryPos = index
         }
         self.chooseDropDown.show()
     }
     
     func setupChooseDropDown() {
         chooseDropDown.anchorView = self.view
-        
         chooseDropDown.bottomOffset = CGPoint(x: 20, y: (selectCountry?.bounds.height)!)
-        
-        
     }
+    
     let colors = Colors()
     
     func refresh() {
@@ -103,8 +100,13 @@ class RegisterPhoneNumber: UIViewController {
                     self.country_code.append(country["code"].string!)
                     print("IsAccountExist \(country["name"])")
                 }
-                self.selectCountry?.setTitle(self.self.country_name[0], for: .normal)
-                self.selectCountryCode?.setTitle(self.country_code[0], for: .normal)
+                if(self.mCode == nil) {
+                    self.selectCountryCode?.setTitle(self.country_code[0], for: .normal)
+                    self.selectCountry?.setTitle(self.self.country_name[0], for: .normal)
+                } else {
+                    self.selectCountry?.setTitle(self.country_name[self.countryPos!], for: .normal)
+
+                }
             }
         }
     }
@@ -161,6 +163,9 @@ class RegisterPhoneNumber: UIViewController {
                     let mainStoryboard: UIStoryboard = UIStoryboard(name: AppConstants.Storyboards.Main.rawValue, bundle: nil)
                     let editPhoneNumber = mainStoryboard.instantiateViewController(withIdentifier: "EditPhoneNumber") as! EditPhoneNumber
                     editPhoneNumber.phoneNumber = self.phone_number.text
+                    editPhoneNumber.countryPos = self.countryPos
+                    editPhoneNumber.mCode = self.selectCountryCode.titleLabel?.text
+
                     self.navigationController?.pushViewController(editPhoneNumber, animated: true)
                 
                 

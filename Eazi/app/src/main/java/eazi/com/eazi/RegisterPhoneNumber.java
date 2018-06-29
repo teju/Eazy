@@ -51,7 +51,7 @@ public class RegisterPhoneNumber extends AppCompatActivity implements View.OnCli
     private EditText phone_number;
     private View rootView;
     private List<Contact> contacts = new ArrayList<>();
-    private Spinner country_code_spinner;
+    private EditText country_code_spinner;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class RegisterPhoneNumber extends AppCompatActivity implements View.OnCli
     public void initUI(){
         rootView=findViewById(android.R.id.content);
         country_spinner = (Spinner)findViewById(R.id.country_list);
-        country_code_spinner = (Spinner)findViewById(R.id.country_code);
+        country_code_spinner = (EditText)findViewById(R.id.country_code);
         ok = (Button)findViewById(R.id.ok);
         phone_number = (EditText)findViewById(R.id.phone_number);
     }
@@ -74,6 +74,9 @@ public class RegisterPhoneNumber extends AppCompatActivity implements View.OnCli
         System.out.println("locale123 "+locale);
         callCountryApi();
         ok.setOnClickListener(this);
+        if(getIntent().getStringExtra("phone_number") != null) {
+            phone_number.setText(getIntent().getStringExtra("phone_number"));
+        }
     }
 
 
@@ -86,7 +89,7 @@ public class RegisterPhoneNumber extends AppCompatActivity implements View.OnCli
                 if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_READ_PHONE_STATE);
                 } else {
-                    if(phone_number.getText().toString().length() != 0) {
+                    if(phone_number.getText().toString().length() > 8 ) {
                         callApiRegister();
                     } else {
                         Toast.makeText(getApplicationContext(),"Enter the phone Number",Toast.LENGTH_LONG).show();
@@ -212,10 +215,10 @@ public class RegisterPhoneNumber extends AppCompatActivity implements View.OnCli
                     "Something went wrong");
         }
     }
+    final List<Country> countries = new ArrayList<>();
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public void ResponseOFCountriesr(String resultString) {
-        final List<Country> countries = new ArrayList<>();
         if(resultString != null) {
             System.out.println("ResponseOFCountriesr "+resultString);
             try {
@@ -247,24 +250,16 @@ public class RegisterPhoneNumber extends AppCompatActivity implements View.OnCli
 
     private void setAdapters(List<Country> countries) {
         List<String> country_name = new ArrayList<>();
-        List<String> country_code = new ArrayList<>();
-        for(int i = 0;i<countries.size();i++) {
+        for (int i = 0; i < countries.size(); i++) {
             country_name.add(countries.get(i).getCountry_name());
-            country_code.add(countries.get(i).getCountry_code());
         }
-
-        ArrayAdapter countryAdapter = new ArrayAdapter(this,R.layout.spinner_item,country_name);
+        ArrayAdapter countryAdapter = new ArrayAdapter(this, R.layout.spinner_item, country_name);
         countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         country_spinner.setAdapter(countryAdapter);
         country_spinner.setOnItemSelectedListener(this);
-
-        ArrayAdapter countrycodeAdapter = new ArrayAdapter(this,R.layout.spinner_item,country_code);
-        countrycodeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Setting the ArrayAdapter data on the Spinner
-        country_code_spinner.setAdapter(countrycodeAdapter);
-        country_code_spinner.setOnItemSelectedListener(this);
     }
+
 
     public void getContacts() {
 
@@ -273,7 +268,6 @@ public class RegisterPhoneNumber extends AppCompatActivity implements View.OnCli
                 != PackageManager.PERMISSION_GRANTED)
 
         {
-
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(RegisterPhoneNumber.this,
                     Manifest.permission.READ_CONTACTS)) {
@@ -335,13 +329,13 @@ public class RegisterPhoneNumber extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        country_code_spinner.setSelection(position);
+        country_code_spinner.setText(countries.get(position).getCountry_code());
         country_spinner.setSelection(position);
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        country_code_spinner.setSelection(0);
+        country_code_spinner.setText(countries.get(0).getCountry_code());
         country_spinner.setSelection(0);
     }
 }
