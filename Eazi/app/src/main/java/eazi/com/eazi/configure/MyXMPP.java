@@ -191,7 +191,7 @@ public class MyXMPP {
                     if (connection.isAuthenticated() && connection.isConnected()) {
                         //now send message and receive message code here
                         System.out.println("ChatConfig receiver " + "run: auth done and connected successfully");
-                       // getAllUser();
+                        getAllUser();
 
                         org.jivesoftware.smack.chat2.ChatManager chatManager = org.jivesoftware.smack.chat2.ChatManager.getInstanceFor(connection);
                         chatManager.addListener(new IncomingChatMessageListener() {
@@ -336,8 +336,6 @@ public class MyXMPP {
 
             e.printStackTrace();
         }
-
-
         DomainBareJid DBJid = jid.asDomainBareJid();
         System.out.println("ChatConfig  getAllUser JDomainBareJid:"+ DBJid);
 

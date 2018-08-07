@@ -73,11 +73,11 @@ final class MenuViewController: UIViewController, UITableViewDataSource, UITable
         let fullName = CNContactFormatter.string(from: contact, style: .fullName) ?? "No Name"
 
         let mainStoryboard: UIStoryboard = UIStoryboard(name: AppConstants.Storyboards.Main.rawValue, bundle: nil)
-        
         let profilePage = mainStoryboard.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
-        profilePage.to_user = actualNumber?.stringValue
-        profilePage.userN = fullName
-        self.present(profilePage, animated: true, completion: nil)
-
+        if(actualNumber?.stringValue != nil) {
+            profilePage.to_user = actualNumber?.stringValue
+            profilePage.userN = fullName
+            self.present(profilePage, animated: true, completion: nil)
+        }
     }
 }

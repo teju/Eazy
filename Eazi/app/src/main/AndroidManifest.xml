@@ -23,7 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LanguageSelection" />
         <activity android:name=".RegisterPhoneNumber" />
         <activity android:name=".PhoneVerification" />
         <activity android:name=".SmsVerification" />
@@ -32,6 +31,8 @@
         <activity android:name=".ChatActivity" />
         <activity android:name=".ProfilePage"></activity>
         <activity android:name=".StartChat"></activity>
+        <activity android:name=".LanguageSelection"></activity>
+
         <service
             android:name=".configure.MyService"
             android:enabled="true" />

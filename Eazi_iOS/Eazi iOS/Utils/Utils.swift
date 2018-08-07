@@ -114,25 +114,39 @@ class Utils {
     static func getContactName(to_user: String) -> String {
         var objects  = [CNContact]()
         var user_name = ""
-        
+        var to_user = filterPhoneNumber(to_user: to_user)
         let store = Utils.getContacts()
         objects = Utils.retrieveContactsWithStore(store: store)
         for index in 0 ... objects.count - 1 {
             let contact = objects[index]
-            let actualNumber = contact.phoneNumbers.first?.value as? CNPhoneNumber
-        
-            var string = actualNumber?.stringValue
-            string = string?.replacingOccurrences(of: " ", with: "")
-            print("actualNumber123 \(string) to_user \(to_user)")
+            var actualNumber = contact.phoneNumbers.first?.value as? CNPhoneNumber
+            print("getContactName12345 \(actualNumber?.stringValue)")
+            if(actualNumber?.stringValue != nil){
+                var string = actualNumber?.stringValue
+                string = string?.replacingOccurrences(of: " ", with: "")
+                string = filterPhoneNumber(to_user: string!)
+                print("actualNumber123 \(string) to_user \(to_user)")
 
-            if to_user.range(of:string!) != nil {
-                print("exists")
-                let fullName = CNContactFormatter.string(from: contact, style: .fullName) ?? "No Name"
-                return fullName
-                break
+                if to_user.range(of:string!) != nil {
+                    print("exists")
+                    let fullName = CNContactFormatter.string(from: contact, style: .fullName) ?? "No Name"
+                    return fullName
+                    break
+                }
             }
         }
         return user_name
+    }
+    
+    static func filterPhoneNumber(to_user : String) -> String {
+        var to_user = to_user.replacingOccurrences(of: ")", with: "")
+        to_user = to_user.replacingOccurrences(of: "-", with: "")
+        to_user = to_user.replacingOccurrences(of: "(", with: "")
+        to_user = to_user.replacingOccurrences(of: "+", with: "")
+        to_user = to_user.replacingOccurrences(of: "\\s", with: "")
+        to_user = to_user.replacingOccurrences(of: "\\s", with: "", options: NSString.CompareOptions.regularExpression, range: nil)
+        to_user = to_user.trimmingCharacters(in: .whitespaces)
+        return to_user
     }
     
     static func htmlToString(mstring : String) -> String {

@@ -1,1 +1,1 @@
-include ':app', ':flowingdrawer-core', ':ArcMenuLibrary', ':otpview'
+include ':app', ':flowingdrawer-core', ':ArcMenuLibrary', ':otpview', ':WheelPicker'

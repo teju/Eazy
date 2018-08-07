@@ -1,59 +1,64 @@
 package eazi.com.eazi;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.Toast;
 
+import com.aigestudio.wheelpicker.WheelPicker;
 
-public class LanguageSelection extends AppCompatActivity implements View.OnClickListener{
+/**
+ * @author AigeStudio 2015-12-06
+ * @author AigeStudio 2016-07-08
+ */
+public class LanguageSelection extends Activity implements WheelPicker.OnItemSelectedListener, View.OnClickListener {
 
-    String [] languages = {"English","Hindi","German","Spanish","Mandarin","Arabic","Japanese","Korean"};
-    private LinearLayout language_list;
+    private WheelPicker wheelCenter;
+
+    private Integer gotoBtnItemIndex;
     private Button choose_language;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.language_selection);
-        initUI();
-        initData();
-        setList();
-    }
-
-    public void initUI(){
-        language_list = (LinearLayout)findViewById(R.id.language_list);
+        setContentView(R.layout.ac_preview);
         choose_language = (Button)findViewById(R.id.choose_language);
+        choose_language.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LanguageSelection.this,RegisterPhoneNumber.class);
+                startActivity(i);
+            }
+        });
+
+        wheelCenter = (WheelPicker) findViewById(R.id.main_wheel_left);
+        wheelCenter.setOnItemSelectedListener(this);
+        wheelCenter.setSelectedItemPosition(6,true);
+        randomlySetGotoBtnIndex();
     }
 
-    public void initData() {
-        choose_language.setOnClickListener(this);
+    private void randomlySetGotoBtnIndex() {
+        gotoBtnItemIndex = (int) (Math.random() * wheelCenter.getData().size());
     }
 
-    public void setList(){
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    @Override
+    public void onItemSelected(WheelPicker picker, Object data, int position) {
+        String text = "";
+        switch (picker.getId()) {
 
-        for (int i = 0; i < languages.length; i++) {
-            View child = inflater.inflate(R.layout.language_item, null);
-            TextView language = (TextView) child.findViewById(R.id.language);
-            language.setText(languages[i]);
-            language_list.addView(child);
+            case R.id.main_wheel_left:
+                text = "Center:";
+                break;
+
         }
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.choose_language:
-                Intent i = new Intent(LanguageSelection.this,RegisterPhoneNumber.class);
-                startActivity(i);
-                break;
-        }
+        wheelCenter.setSelectedItemPosition(gotoBtnItemIndex);
+        randomlySetGotoBtnIndex();
     }
+
 }

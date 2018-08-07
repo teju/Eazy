@@ -38,9 +38,8 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         if(!(to_user?.starts(with: "91"))!) {
             to_user = "91"+to_user!
         }
-        to_user = to_user?.replacingOccurrences(of: " ", with: "")
-        
-
+        to_user = Utils.filterPhoneNumber(to_user: to_user!)
+        print("filterPhoneNumber123 \(to_user)")
         if(!(to_user?.contains("@eazi.ai"))!) {
             to_user = to_user!+"@eazi.ai"
         }

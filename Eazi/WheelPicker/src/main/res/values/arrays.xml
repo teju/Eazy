@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="WheelArrayDefault">
+        <item>Albanian</item>
+        <item>Arabic</item>
+        <item>Armenian</item>
+        <item>Bengali</item>
+        <item>Burmese</item>
+        <item>Cantonese</item>
+        <item>English</item>
+        <item>Farsi</item>
+        <item>French</item>
+        <item>German</item>
+        <item>Greek</item>
+        <item>Haitian Creole</item>
+        <item>Hebrew</item>
+        <item>Hindi</item>
+        <item>Hmong</item>
+        <item>Italian</item>
+        <item>Japanese.</item>
+        <item>Karen</item>
+        <item>Khmer</item>
+        <item>Korean</item>
+        <item>Laotian</item>
+        <item>Lithuanian</item>
+        <item>Malay</item>
+        <item>Mandarin</item>
+        <item>Nepali</item>
+        <item>Polish</item>
+        <item>Portuguese</item>
+        <item>Punjabi</item>
+    </string-array>
+    <string-array name="WheelArrayWeek">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+</resources>
