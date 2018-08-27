@@ -247,7 +247,7 @@ public class MyXMPP {
 
     }
 
-    public void sendMessage(String messageSend, String receiver) {
+    public void sendMessage(String messageSend, String receiver, String type) {
         if(!connection.isConnected()) {
            initialiseConnection();
         }
@@ -270,6 +270,7 @@ public class MyXMPP {
             Message newMessage = new Message();
             newMessage.setBody(messageSend);
             newMessage.setType(Message.Type.chat);
+            newMessage.setSubject(type);
             try {
                 Mychat.sendMessage(newMessage);
                 System.out.println("ChatConfig MEsssage sent " );
@@ -294,7 +295,7 @@ public class MyXMPP {
             public void run() {
                 DataBaseHelper database = new DataBaseHelper(context);
                 database.putMessages(database, CommonMethods.getSharedPrefValue(context, Constants.user_name)
-                        ,receiver,chatMessage.getBody(),CommonMethods.getDate(),"false");
+                        ,receiver,chatMessage.getBody(),CommonMethods.getDate(),"false",chatMessage.getSubject());
                 database.putUsers(database,receiver);
                 //ChatAdapter chatAdapter = new ChatAdapter(context, receiver);
                 if(StartChat.chatAdapter != null) {

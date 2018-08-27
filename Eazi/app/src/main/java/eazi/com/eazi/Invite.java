@@ -27,6 +27,8 @@ import android.widget.RelativeLayout;
 import com.mxn.soul.flowingdrawer_core.ElasticDrawer;
 import com.mxn.soul.flowingdrawer_core.FlowingDrawer;
 
+import org.jivesoftware.smack.chat2.Chat;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,8 +39,10 @@ import eazi.com.eazi.Fragments.Groups;
 import eazi.com.eazi.Fragments.MenuListFragment;
 import eazi.com.eazi.configure.LocalBinder;
 import eazi.com.eazi.configure.MyService;
+import eazi.com.eazi.materialarcmenu.util.Util;
 import eazi.com.eazi.model.Contact;
 import eazi.com.eazi.utils.CommonMethods;
+import eazi.com.eazi.utils.Constants;
 
 
 public class Invite extends AppCompatActivity {
@@ -106,6 +110,7 @@ public class Invite extends AppCompatActivity {
         });
 
 
+
     }
     @Override
     protected void onResume() {
@@ -137,6 +142,11 @@ public class Invite extends AppCompatActivity {
         MenuListFragment mMenuFragment = (MenuListFragment) fm.findFragmentById(R.id.id_container_menu);
         if (mMenuFragment == null) {
             mMenuFragment = new MenuListFragment();
+            String params = getIntent().getStringExtra(Constants.forwardMsgList);
+            System.out.println("forwardMsgList1234 setupViewPager "+params);
+            if(!CommonMethods.isEmpty(params)) {
+                mMenuFragment.setPArams(params);
+            }
             fm.beginTransaction().add(R.id.id_container_menu, mMenuFragment).commit();
         }
 
@@ -161,8 +171,15 @@ public class Invite extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         try {
+            Chats c = new Chats();
+            String params = getIntent().getStringExtra(Constants.forwardMsgList);
+            System.out.println("forwardMsgList1234 setupViewPager "+params);
+
+            if(!CommonMethods.isEmpty(params)) {
+                c.setPArams(params);
+            }
             ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-            adapter.addFragment(new Chats(), "Chat");
+            adapter.addFragment(c, "Chat");
             adapter.addFragment(new Contacts(), "Contacts");
             adapter.addFragment(new Favourite(), "Favourite");
             adapter.addFragment(new Groups(), "Groups");

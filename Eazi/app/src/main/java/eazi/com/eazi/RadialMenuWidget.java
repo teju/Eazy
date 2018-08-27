@@ -195,6 +195,7 @@ public class RadialMenuWidget extends View {
 								selectedWedge = 0;
 								center_label = "Connect";
 							} else if(menuEntries.get(i).getName().equals("Settings")) {
+
 								selectedWedge = i;
 								center_label = "Plus";
 
@@ -203,6 +204,8 @@ public class RadialMenuWidget extends View {
 								center_label = "Search";
 
 							} else if(menuEntries.get(i).getName().equals("Search")) {
+								Intent intent  = new Intent(context,ProfilePage.class);
+								context.startActivity(intent);
 								selectedWedge = i;
 								center_label = "Settings";
 							}

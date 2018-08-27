@@ -480,7 +480,7 @@ public class WheelPicker extends View implements IDebug, IWheelPicker, Runnable 
 
         mHalfWheelHeight = mRectDrawn.height() / 2;
 
-        mItemHeight = 100;
+        mItemHeight = 85;
         mHalfItemHeight = mItemHeight / 2;
 
         // 初始化滑动最大坐标

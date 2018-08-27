@@ -1,6 +1,7 @@
 package eazi.com.eazi;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,7 @@ public class SmsVerification extends AppCompatActivity implements View.OnClickLi
     private Button resend_sms;
     private Button call;
     private TextView phone_number;
+    private TextView timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class SmsVerification extends AppCompatActivity implements View.OnClickLi
         phone_number = (TextView) findViewById(R.id.phone_number);
         otpView = (OtpView) findViewById(R.id.otp_view);
         call = (Button) findViewById(R.id.call);
+        timer = (TextView) findViewById(R.id.timer);
     }
 
     public void initData(){
@@ -44,6 +47,8 @@ public class SmsVerification extends AppCompatActivity implements View.OnClickLi
         });
         phone_number.setText(CommonMethods.getSharedPrefValue(this, Constants.user_name));
         CommonMethods.addSharedPref(this,Constants.user_verified,"true");
+        startTime = System.currentTimeMillis();
+        timerHandler.postDelayed(timerRunnable, 1000);
     }
 
     @Override
@@ -54,9 +59,30 @@ public class SmsVerification extends AppCompatActivity implements View.OnClickLi
 
                 break;
             case R.id.call:
-                i =new Intent(SmsVerification.this,Invite.class);
+                i =new Intent(SmsVerification.this,RadialMenuActivity.class);
                 startActivity(i);
                 break;
         }
     }
+
+    Handler timerHandler = new Handler();
+    long startTime = 0;
+    Runnable timerRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+            long millis = System.currentTimeMillis() - startTime;
+            int seconds = (int) (millis / 1000);
+            int minutes = seconds / 60;
+            seconds = seconds % 60;
+            if(seconds < 31 ){
+                timer.setText(String.format("%d:%02d", minutes, seconds));
+            } else {
+                startTime = System.currentTimeMillis();
+                timerHandler.postDelayed(timerRunnable, 1000);
+            }
+            timerHandler.postDelayed(this, 500);
+        }
+    };
+
 }

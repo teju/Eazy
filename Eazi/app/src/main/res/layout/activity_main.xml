@@ -7,7 +7,7 @@
     android:background="@color/white"
     tools:context="eazi.com.eazi.MainActivity">
         <!-- Wall paper -->
-        <ImageView
+        <android.support.v4.view.ViewPager
             android:id="@+id/pager_introduction"
             android:layout_width="250dp"
             android:layout_centerHorizontal="true"
@@ -17,7 +17,8 @@
             android:src="@drawable/introduction_image_3"
             android:scaleType="fitXY"
             tools:listitem="@layout/pager_item">
-        </ImageView>
+        </android.support.v4.view.ViewPager>
+
         <!-- wallpaper dots -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,13 +59,47 @@
                     android:layout_gravity="center_horizontal"/>
                 <TextView
                     android:layout_width="300dp"
-                    android:layout_height="50dp"
-                    android:text="By using App name, you agree to our Terms of use and Privacy and Policy"
+                    android:layout_height="wrap_content"
+                    android:text="By using App name, you agree to our"
                     android:layout_marginTop="30dp"
                     android:textAlignment="center"
                     android:lineSpacingExtra="5dp"
                     android:textSize="15dp"
                     android:layout_gravity="center_horizontal"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Terms"
+                            android:textColor="@color/blue"
+                            android:textAlignment="center"
+                            android:id="@+id/terms"
+                            android:lineSpacingExtra="5dp"
+                            android:textSize="15dp"
+                            android:layout_gravity="center_horizontal"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" of use and "
+                            android:textAlignment="center"
+                            android:lineSpacingExtra="5dp"
+                            android:textSize="15dp"
+                            android:layout_gravity="center_horizontal"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Privacy and Policy"
+                            android:textAlignment="center"
+                            android:lineSpacingExtra="5dp"
+                            android:textColor="@color/blue"
+                            android:id="@+id/policy"
+                            android:textSize="15dp"
+                            android:layout_gravity="center_horizontal"/>
 
+                </LinearLayout>
         </LinearLayout>
 </RelativeLayout>

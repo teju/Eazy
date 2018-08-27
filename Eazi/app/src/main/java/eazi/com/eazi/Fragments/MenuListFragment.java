@@ -23,6 +23,7 @@ import java.util.List;
 import eazi.com.eazi.*;
 import eazi.com.eazi.model.Contact;
 import eazi.com.eazi.utils.CommonMethods;
+import eazi.com.eazi.utils.Constants;
 
 /**
  * Created by mxn on 2016/12/13.
@@ -33,6 +34,13 @@ public class MenuListFragment extends Fragment {
 
 
     private List<Contact> contactList = new ArrayList<>();
+    private String params;
+
+    public void setPArams(String params) {
+        System.out.println("forwardMsgList1234 params "+params);
+
+        this.params = params;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,6 +71,9 @@ public class MenuListFragment extends Fragment {
                 Intent i = new Intent(getActivity(), StartChat.class);
                 i.putExtra("user_phone",contactList.get(position).getPhoneNo().replace("+",""));
                 i.putExtra("user_name",contactList.get(position).getName().replace("+",""));
+                if(!CommonMethods.isEmpty(params)) {
+                    i.putExtra(Constants.forwardMsgList, params);
+                }
                 getActivity().startActivity(i);
             }
         });

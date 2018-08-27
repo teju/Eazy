@@ -27,16 +27,26 @@ import eazi.com.eazi.StartChat;
 import eazi.com.eazi.database.DataBaseHelper;
 import eazi.com.eazi.database.Users;
 import eazi.com.eazi.utils.CommonMethods;
+import eazi.com.eazi.utils.Constants;
 
 
 public class Chats extends Fragment {
 
 
     private LinearLayout listView;
+    private String params;
+
+    public void setPArams(String params) {
+        System.out.println("forwardMsgList1234 params "+params);
+
+        this.params = params;
+    }
 
     public Chats() {
         // Required empty public constructor
     }
+
+
     private RecyclerView mMessageRecycler;
 
     View view;
@@ -79,6 +89,9 @@ public class Chats extends Fragment {
                     Intent intent = new Intent(getActivity(), StartChat.class);
                     intent.putExtra("user_phone",users.get(id).getPhoneNumber());
                     intent.putExtra("user_name",name.getText().toString());
+                    if(!CommonMethods.isEmpty(params)) {
+                        intent.putExtra(Constants.forwardMsgList, params);
+                    }
                     getActivity().startActivity(intent);
                 }
             });

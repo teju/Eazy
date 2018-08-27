@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.aigestudio.wheelpicker.WheelPicker;
 
@@ -23,7 +22,7 @@ public class LanguageSelection extends Activity implements WheelPicker.OnItemSel
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ac_preview);
+        setContentView(R.layout.language_selection);
         choose_language = (Button)findViewById(R.id.choose_language);
         choose_language.setOnClickListener(new View.OnClickListener() {
             @Override

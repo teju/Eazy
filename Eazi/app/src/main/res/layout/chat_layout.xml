@@ -18,8 +18,48 @@
             android:src="@drawable/arrow_left"/>
         <LinearLayout
             android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/accessory"
+            android:background="@color/white"
+            android:visibility="gone"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp">
+            <ImageButton
+                android:id="@+id/delete"
+                android:layout_width="20dp"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_marginRight="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/delete"/>
+            <ImageButton
+                android:id="@+id/forward"
+                android:layout_width="20dp"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_height="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/share" />
+            <ImageButton
+                android:id="@+id/copy"
+                android:layout_width="20dp"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_height="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/content_copy" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:visibility="visible"
+            android:id="@+id/profile_details"
             android:layout_marginRight="20dp"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -76,9 +116,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/form"
         android:divider="@null"
-        android:dividerHeight="0dp"
-        android:paddingBottom="10dp"
-        />
+        android:dividerHeight="5dp"
+        android:paddingBottom="10dp" />
 
     <LinearLayout
         android:id="@+id/form"
@@ -86,31 +125,44 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:background="#91f1f1f1"
+        android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="2dp" >
-
+        <ImageButton
+            android:id="@+id/share_loc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="8dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/google_maps" />
 
         <EditText
             android:id="@+id/messageEditText"
             android:layout_width="252dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignTop="@+id/button1"
             android:layout_toLeftOf="@+id/sendMessageButton"
             android:layout_weight="0.72"
+            android:background="@android:color/transparent"
             android:ems="10"
             android:maxHeight="80dp" />
-
         <ImageButton
             android:id="@+id/sendMessageButton"
             android:layout_width="wrap_content"
+            android:layout_marginRight="8dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:background="@drawable/send_button"
-            android:text="d" />
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/send_button" />
     </LinearLayout>
 
 

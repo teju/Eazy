@@ -23,5 +23,8 @@ public class Constants {
     public static String userNameIntent = "user_name";
     public static String userPhoneIntent = "user_phone";
 
+    public static String MessageTypeText = "MessageTypeText";
+    public static String forwardMsgList = "forwardMsgList";
+    public static String MessageTypeMaps = "MessageTypeMaps";
 
 }

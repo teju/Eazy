@@ -19,7 +19,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private static  int database_version  = 1;
     private final Context context;
     public String Messages =" CREATE TABLE `Messages` (Id INTEGER PRIMARY KEY AUTOINCREMENT, "+
-            "From_User TEXT, To_User TEXT, Message_Text TEXT,Date TEXT,isMine TEXT); ";
+            "From_User TEXT, To_User TEXT, Message_Text TEXT,Date TEXT,isMine TEXT, Type TEXT); ";
     public String Users =" CREATE TABLE `Users` (Id INTEGER PRIMARY KEY AUTOINCREMENT, "+
             "PhoneNumber TEXT unique, Me TEXT); ";
 
@@ -47,7 +47,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 
     public boolean putMessages(DataBaseHelper dbh,String From_NodeID,
-                                     String To_Node_ID, String Message_Text,String Date , String Time){
+                                     String To_Node_ID, String Message_Text,String Date ,
+                               String Time,String type){
         SQLiteDatabase sq=dbh.getWritableDatabase();
         System.out.println("DataBaseHelper123 To_Node_ID " + To_Node_ID);
 
@@ -57,6 +58,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put("Message_Text", Message_Text);
         cv.put("Date", Date);
         cv.put("isMine", Time);
+        cv.put("Type", type);
         sq.insert("Messages", null, cv);
         return true;
 
@@ -99,7 +101,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 msg.setMessage_Text(cursor.getString(3));
                 msg.setDate(cursor.getString(4));
                 msg.setISMine(cursor.getString(5));
-                System.out.println("DataBaseHelper123 getDateRate " + cursor.getString(2));
+                msg.setType(cursor.getString(6));
+                System.out.println("DataBaseHelper123 getDateRate " + cursor.getString(6));
                 dataListList.add(msg);
             } while (cursor.moveToNext());
         }
@@ -130,9 +133,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public void deleteFrominbox (String id) {
+    public void deleteFrominbox (String user_id ,String id) {
         SQLiteDatabase database = this.getWritableDatabase();
-        String deleteQuery = "Delete from Inbox_Message where  Id = "+id ;
+        String deleteQuery = "Delete from Messages where  To_User = '"+user_id +"' AND Id = "+id;
         Log.d("settingdeletequery", deleteQuery);
         database.execSQL(deleteQuery);
     }

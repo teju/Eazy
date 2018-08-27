@@ -258,6 +258,12 @@ public class RegisterPhoneNumber extends AppCompatActivity implements View.OnCli
         //Setting the ArrayAdapter data on the Spinner
         country_spinner.setAdapter(countryAdapter);
         country_spinner.setOnItemSelectedListener(this);
+        for(int i = 0;i<countries.size();i++) {
+            if(countries.get(i).getCountry_name().toLowerCase().equals("india")) {
+                country_code_spinner.setText(countries.get(i).getCountry_code());
+                country_spinner.setSelection(i);
+            }
+        }
     }
 
 

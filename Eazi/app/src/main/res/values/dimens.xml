@@ -11,7 +11,7 @@
     <dimen name="menu_child_radius2">96dp</dimen>
     <dimen name="menu_scroll_threshold">4dp</dimen>
 
-        <!-- Default fab dimens,-->
+    <!-- Default fab dimens,-->
     <dimen name="fab_size_large">64dp</dimen>
     <dimen name="fab_size_normal">56dp</dimen>
     <dimen name="fab_size_mini">48dp</dimen>
