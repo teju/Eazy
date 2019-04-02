@@ -12,6 +12,11 @@
             <option value="$PROJECT_DIR$/WheelPicker" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/flowingdrawer-core" />
+            <option value="$PROJECT_DIR$/library" />
+            <option value="$PROJECT_DIR$/library/smack-core" />
+            <option value="$PROJECT_DIR$/library/smack-extensions" />
+            <option value="$PROJECT_DIR$/library/smack-im" />
+            <option value="$PROJECT_DIR$/library/smack-sasl-provided" />
             <option value="$PROJECT_DIR$/otpview" />
           </set>
         </option>

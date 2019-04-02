@@ -7,7 +7,12 @@
       <module fileurl="file://$PROJECT_DIR$/WheelPicker/WheelPicker.iml" filepath="$PROJECT_DIR$/WheelPicker/WheelPicker.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/flowingdrawer-core/flowingdrawer-core.iml" filepath="$PROJECT_DIR$/flowingdrawer-core/flowingdrawer-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
       <module fileurl="file://$PROJECT_DIR$/otpview/otpview.iml" filepath="$PROJECT_DIR$/otpview/otpview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/smack-core/smack-core.iml" filepath="$PROJECT_DIR$/library/smack-core/smack-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/smack-extensions/smack-extensions.iml" filepath="$PROJECT_DIR$/library/smack-extensions/smack-extensions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/smack-im/smack-im.iml" filepath="$PROJECT_DIR$/library/smack-im/smack-im.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/smack-sasl-provided/smack-sasl-provided.iml" filepath="$PROJECT_DIR$/library/smack-sasl-provided/smack-sasl-provided.iml" />
     </modules>
   </component>
 </project>

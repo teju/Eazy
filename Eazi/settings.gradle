@@ -1,1 +1,1 @@
-include ':app', ':flowingdrawer-core', ':ArcMenuLibrary', ':otpview', ':WheelPicker'
+include ':app', ':flowingdrawer-core', ':ArcMenuLibrary', ':otpview', ':WheelPicker', ':library:smack-core', ':library:smack-sasl-provided', ':library:smack-im', ':library:smack-extensions'

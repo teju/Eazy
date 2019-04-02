@@ -17,7 +17,9 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
+import org.jivesoftware.smack.AbstractXMPPConnection;
 import org.jivesoftware.smack.ConnectionConfiguration;
+import org.jivesoftware.smack.SASLAuthentication;
 import org.jivesoftware.smack.SmackException;
 import org.jivesoftware.smack.SmackException.NotConnectedException;
 import org.jivesoftware.smack.XMPPException;
@@ -28,17 +30,12 @@ import org.jivesoftware.smack.chat.ChatMessageListener;
 import org.jivesoftware.smack.chat2.IncomingChatMessageListener;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Presence;
-import org.jivesoftware.smack.provider.ProviderManager;
 import org.jivesoftware.smack.roster.Roster;
+import org.jivesoftware.smack.sasl.provided.SASLProvidedSmackInitializer;
 import org.jivesoftware.smack.tcp.XMPPTCPConnection;
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration;
-import org.jivesoftware.smackx.search.ReportedData;
-import org.jivesoftware.smackx.search.UserSearch;
 import org.jivesoftware.smackx.search.UserSearchManager;
 import org.jivesoftware.smackx.xdata.Form;
-import org.jivesoftware.smackx.xdata.FormField;
-import org.jivesoftware.smackx.xdata.packet.DataForm;
-import org.jxmpp.jid.BareJid;
 import org.jxmpp.jid.DomainBareJid;
 import org.jxmpp.jid.EntityBareJid;
 import org.jxmpp.jid.Jid;
@@ -50,8 +47,6 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Random;
 
 import javax.net.ssl.HostnameVerifier;
@@ -59,7 +54,6 @@ import javax.net.ssl.SSLSession;
 
 import eazi.com.eazi.R;
 import eazi.com.eazi.StartChat;
-import eazi.com.eazi.adapters.ChatAdapter;
 import eazi.com.eazi.database.DataBaseHelper;
 import eazi.com.eazi.database.Messages;
 import eazi.com.eazi.utils.CommonMethods;
@@ -74,7 +68,7 @@ public class MyXMPP {
     public static boolean isToasted = true;
     private boolean chat_created = false;
     private String serverAddress;
-    public static XMPPTCPConnection connection;
+    public static AbstractXMPPConnection connection;
     public static String loginUser;
     public static String passwordUser;
     Gson gson;
@@ -139,6 +133,7 @@ public class MyXMPP {
 
 
 
+//
                 InetAddress addr = null;
                 try {
 
@@ -158,6 +153,8 @@ public class MyXMPP {
                     }
                 };
                 DomainBareJid serviceName = null;
+                SASLProvidedSmackInitializer saslProvidedSmackInitializer = new SASLProvidedSmackInitializer();
+                saslProvidedSmackInitializer.initialize();
                 try {
                     serviceName = JidCreate.domainBareFrom("eazi.ai");
                 } catch (XmppStringprepException e) {
@@ -169,15 +166,19 @@ public class MyXMPP {
                         .setXmppDomain(serviceName)
                         .setHostnameVerifier(verifier)
                         .setHostAddress(addr)
-                        .setDebuggerEnabled(true)
                         .build();
+                System.out.println("ChatConfig connected MECHANISMS "+SASLAuthentication.getRegisterdSASLMechanisms());
+
                 connection = new XMPPTCPConnection(config);
 
                 try {
                     connection.connect();
+                    SASLAuthentication.unBlacklistSASLMechanism("PLAIN");
+                   // SASLAuthentication.blacklistSASLMechanism("DIGEST-MD5");
+                    System.out.println("ChatConfig SmackException "+connection.isConnected());
+
                     login();
 
-                    System.out.println("ChatConfig connected");
 
                     // CommonMethods.dialog(context,false);
                     Presence presence = new Presence(Presence.Type.available);
@@ -194,7 +195,7 @@ public class MyXMPP {
                         getAllUser();
 
                         org.jivesoftware.smack.chat2.ChatManager chatManager = org.jivesoftware.smack.chat2.ChatManager.getInstanceFor(connection);
-                        chatManager.addListener(new IncomingChatMessageListener() {
+                        chatManager.addIncomingListener(new IncomingChatMessageListener() {
                             @Override
                             public void newIncomingMessage(EntityBareJid from, Message message, org.jivesoftware.smack.chat2.Chat chat) {
                                 System.out.println("ChatConfig receiver message " + chat.getXmppAddressOfChatPartner().asBareJid());
@@ -231,8 +232,12 @@ public class MyXMPP {
             connection.login(loginUser, passwordUser);
             Log.i("LOGIN", "Yey! We're connected to the Xmpp server!");
         } catch (XMPPException | SmackException | IOException e) {
+            System.out.println("ChatConfig SmackException "+e.toString());
+
             e.printStackTrace();
         } catch (Exception e) {
+            System.out.println("ChatConfig SmackException "+e.toString());
+
         }
 
     }
